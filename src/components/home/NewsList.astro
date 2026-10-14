@@ -1,0 +1,48 @@
+---
+import { render } from 'astro:content';
+import { formatActuDate, type Actu } from '@/lib/actus';
+
+// Liste des actualités : date, étiquette, titre, texte (corps Markdown), lien.
+interface Props {
+  actus: Actu[];
+}
+const { actus } = Astro.props;
+const items = await Promise.all(
+  actus.map(async (actu) => ({ actu, Content: (await render(actu)).Content })),
+);
+---
+
+<div class="grid grid-cols-1 gap-x-8 border-t border-fg xs:grid-cols-2 tab:grid-cols-3">
+  {
+    items.map(({ actu, Content }) => (
+      <article class="grid min-w-0 content-start gap-2.5 border-b border-border pt-6 pb-7">
+        <div class="flex items-center gap-2.5">
+          <time
+            datetime={actu.data.date.iso}
+            class="text-[.74rem] font-bold tracking-[.14em] text-accent uppercase"
+          >
+            {formatActuDate(actu.data.date)}
+          </time>
+          <span class="rounded-full bg-soft px-2.25 py-0.75 text-[.66rem] font-bold tracking-[.08em] uppercase">
+            {actu.data.tag}
+          </span>
+        </div>
+        <h3 class="text-[1.55rem]">{actu.data.title}</h3>
+        <div class="text-[.93rem] text-muted [&_p]:m-0">
+          <Content />
+        </div>
+        {actu.data.link && (
+          <a
+            class="link-line justify-self-start text-[.9rem] font-bold"
+            href={actu.data.link.href}
+            {...(actu.data.link.href.startsWith('http')
+              ? { target: '_blank', rel: 'noopener' }
+              : {})}
+          >
+            {actu.data.link.label}
+          </a>
+        )}
+      </article>
+    ))
+  }
+</div>

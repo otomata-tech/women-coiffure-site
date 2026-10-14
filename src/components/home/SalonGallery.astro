@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import type { Salon } from '@/lib/salons';
+
+// Galerie d'un salon : mosaïque 4 colonnes en bureau (big = 2×2, wide = 2×1),
+// carrousel horizontal à défilement aimanté sur mobile (0 JS).
+interface Props {
+  salon: Salon;
+  first?: boolean;
+}
+const { salon, first = false } = Astro.props;
+
+const span = {
+  normal: '',
+  big: 'md:col-span-2 md:row-span-2',
+  wide: 'md:col-span-2',
+} as const;
+---
+
+<h3 class:list={['mb-4 text-[1.7rem]', first ? 'mt-0' : 'mt-10']}>{salon.data.name}</h3>
+<div
+  class="-mx-5 flex snap-x snap-mandatory gap-2.5 overflow-x-auto px-5 [scrollbar-width:none] md:mx-0 md:grid md:auto-rows-[210px] md:grid-cols-4 md:gap-3 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
+>
+  {
+    salon.data.gallery.map((item) => (
+      <figure
+        class={`group relative m-0 h-80 flex-[0_0_78%] snap-center overflow-hidden rounded-tile bg-soft md:h-auto ${span[item.size]}`}
+      >
+        <Image
+          src={item.image}
+          alt={item.alt}
+          widths={[400, 800]}
+          sizes={item.size === 'normal' ? '(min-width: 768px) 270px, 78vw' : '(min-width: 768px) 540px, 78vw'}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+          style={item.position ? `object-position: ${item.position}` : undefined}
+        />
+        <figcaption class="absolute bottom-3 left-3 rounded-full bg-inverse/55 px-2.5 py-1 text-[.7rem] font-bold tracking-[.12em] text-inverse-fg uppercase">
+          {item.caption}
+        </figcaption>
+      </figure>
+    ))
+  }
+</div>

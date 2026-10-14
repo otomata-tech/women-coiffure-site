@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from '@/components/ui/Button.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+
+// Bloc boutique en ligne (click & collect), sur bande sombre.
+interface Props {
+  block: CollectionEntry<'accueil'>['data']['shop'];
+}
+const { block } = Astro.props;
+---
+
+<div class="grid gap-4.5 rounded-3xl bg-inverse px-6 py-9 text-inverse-fg md:px-10 md:py-12">
+  <Eyebrow tone="inverse">{block.eyebrow}</Eyebrow>
+  <h2 class="text-[clamp(2.1rem,5vw,3.3rem)]">{block.title}</h2>
+  <p class="m-0 max-w-[56ch] text-inverse-muted">{block.text}</p>
+  <Button
+    href={block.cta.href}
+    variant="champagne"
+    tone="inverse"
+    class="justify-self-start"
+  >
+    {block.cta.label}
+  </Button>
+</div>

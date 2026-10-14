@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import type { FooterSalonsSection } from './FooterSalons.schema';
+
+interface Props {
+  section: FooterSalonsSection;
+}
+const { section } = Astro.props;
+const year = new Date().getFullYear();
+const heading = 'mb-2 block text-[.8rem] font-bold uppercase tracking-[.14em] text-inverse-fg';
+const link = 'text-inverse-fg no-underline hover:underline';
+// Sur mobile, le bas du pied de page laisse la place à la barre fixe (pb-30).
+---
+
+<footer class="mt-18 bg-inverse pb-30 pt-14 text-[.88rem] text-inverse-muted md:pb-12">
+  <Container>
+    <div class="grid gap-8 xs:grid-cols-2 tab:grid-cols-[1.3fr_repeat(3,1fr)]">
+      <div>
+        <Image
+          src={section.logo}
+          alt={section.organizationName}
+          height={60}
+          class="mb-3.5 h-15 w-auto rounded-md"
+        />
+        <p class="mb-1.5">{section.tagline}</p>
+      </div>
+      <div>
+        <strong class={heading}>Téléphone</strong>
+        <a
+          class={`font-display text-[1.6rem] font-medium lining-nums ${link}`}
+          href={section.phone.href}>{section.phone.display}</a
+        >
+        {section.phone.note && <p class="mb-1.5">{section.phone.note}</p>}
+      </div>
+      <div>
+        <strong class={heading}>Réserver</strong>
+        {
+          section.booking.map((l) => (
+            <p class="mb-1.5">
+              <a class={link} href={l.href} target="_blank" rel="noopener">
+                {l.label}
+              </a>
+            </p>
+          ))
+        }
+      </div>
+      <div>
+        <strong class={heading}>Instagram</strong>
+        {
+          section.instagram.map((l) => (
+            <p class="mb-1.5">
+              <a class={link} href={l.href} target="_blank" rel="noopener">
+                {l.label}
+              </a>
+            </p>
+          ))
+        }
+      </div>
+    </div>
+    <div class="mt-10 border-t border-inverse-border pt-5 text-[.8rem]">
+      © {year}
+      {section.organizationName}
+    </div>
+  </Container>
+</footer>
+
+<div
+  class="fixed inset-x-0 bottom-0 z-20 flex gap-2.5 border-t border-inverse-border bg-inverse px-4 pt-2.5 pb-[calc(10px+env(safe-area-inset-bottom,0px))] md:hidden"
+>
+  <Button href={section.stickyBar.cta.href} variant="champagne" size="bar">
+    {section.stickyBar.cta.label}
+  </Button>
+  <Button href={section.phone.href} variant="outline" tone="inverse" size="bar">
+    {section.stickyBar.callLabel}
+  </Button>
+</div>

@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import Button from '@/components/ui/Button.astro';
+import { formatOpeningHours } from '@/lib/horaires';
+import { formatAddress, formatRating, type Salon } from '@/lib/salons';
+
+// Carte d'un salon : photo, équipe, adresse, horaires, avis, bouton Planity.
+interface Props {
+  salon: Salon;
+}
+const { data } = Astro.props.salon;
+const { google, planity } = data.reviews;
+---
+
+<article
+  class="flex min-w-0 flex-col overflow-hidden rounded-card border border-border bg-surface"
+>
+  <Image
+    src={data.photo}
+    alt={data.photoAlt}
+    widths={[400, 800]}
+    sizes="(min-width: 1120px) 345px, (min-width: 768px) 50vw, 100vw"
+    class="aspect-4/3 h-auto w-full object-cover"
+    style={data.photoPosition ? `object-position: ${data.photoPosition}` : undefined}
+  />
+  <div class="flex flex-1 flex-col gap-4 p-6">
+    <h3 class="text-[2rem]">{data.name}</h3>
+    <ul class="grid gap-2.5">
+      {
+        data.team.map((member) => (
+          <li class="rounded-xl bg-soft px-3.5 py-2.75 text-[.9rem] leading-normal">
+            <b class="block font-display text-[1.2rem] font-semibold text-fg">{member.name}</b>
+            <span class="text-muted">{member.specialty}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <dl class="grid gap-1.5 text-[.88rem]">
+      <div class="grid grid-cols-[76px_1fr] gap-2">
+        <dt class="text-muted">Adresse</dt>
+        <dd>
+          <a class="link-line" href={data.mapsUrl} target="_blank" rel="noopener"
+            >{formatAddress(data)}</a
+          >
+        </dd>
+      </div>
+      <div class="grid grid-cols-[76px_1fr] gap-2">
+        <dt class="text-muted">Horaires</dt>
+        <dd>{formatOpeningHours(data.openingHours)}</dd>
+      </div>
+      <div class="grid grid-cols-[76px_1fr] gap-2">
+        <dt class="text-muted">Avis</dt>
+        <dd>
+          Google <span class="font-bold text-accent tabular-nums">{formatRating(google.rating)} ★</span>
+          ({google.count}) · Planity <span class="font-bold text-accent tabular-nums"
+            >{formatRating(planity.rating)} ★</span
+          > ({planity.count})
+        </dd>
+      </div>
+    </dl>
+    <Button href={data.bookingUrl} class="mt-auto w-full">
+      Réserver à {data.shortName}
+    </Button>
+  </div>
+</article>

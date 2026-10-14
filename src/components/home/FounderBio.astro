@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+
+// Portrait et biographie de la fondatrice, étiquettes de qualités.
+interface Props {
+  founder: CollectionEntry<'accueil'>['data']['founder'];
+}
+const { founder } = Astro.props;
+---
+
+<div
+  class="grid grid-cols-1 items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] md:gap-14"
+>
+  <Image
+    src={founder.photo}
+    alt={founder.photoAlt}
+    widths={[450, 900]}
+    sizes="(min-width: 768px) 480px, 100vw"
+    class="aspect-4/5 h-auto w-full rounded-panel object-cover"
+  />
+  <div>
+    <Eyebrow>{founder.eyebrow}</Eyebrow>
+    <h2 class="mt-3 mb-5 text-[clamp(2.4rem,5.5vw,3.6rem)]">{founder.name}</h2>
+    {founder.bio.map((p) => <p class="mb-4 max-w-[52ch] text-[1.05rem]">{p}</p>)}
+    <ul class="mt-6 mb-4 flex flex-wrap gap-2">
+      {
+        founder.facts.map((fact) => (
+          <li class="rounded-full border border-border bg-surface px-3 py-1.5 text-[.78rem] font-bold tracking-[.06em] uppercase">
+            {fact}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

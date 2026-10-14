@@ -27,6 +27,7 @@ interface Props {
   serviceProvider?: string;
   faq?: FaqItem[];
   breadcrumbs?: Crumb[];
+  graph?: Record<string, unknown>[];
 }
 
 const {
@@ -43,6 +44,7 @@ const {
   serviceProvider,
   faq,
   breadcrumbs,
+  graph: pageGraph = [],
 } = Astro.props;
 
 const orgId = `${SITE.url}#organization`;
@@ -57,6 +59,7 @@ const graph: Record<string, unknown>[] = [
     description: SITE.description,
     url: SITE.url,
     logo: new URL(SITE.organization.logo, SITE.url).href,
+    founder: { '@type': 'Person', ...SITE.organization.founder },
     ...(SITE.organization.sameAs.length
       ? { sameAs: SITE.organization.sameAs }
       : {}),
@@ -189,6 +192,8 @@ if (breadcrumbs && breadcrumbs.length) {
     })),
   });
 }
+
+graph.push(...pageGraph);
 
 const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---

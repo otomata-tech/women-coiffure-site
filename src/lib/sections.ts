@@ -4,6 +4,10 @@ import HeaderSimple from '@/components/sections/nav/HeaderSimple.astro';
 import { schema as headerSimple } from '@/components/sections/nav/HeaderSimple.schema';
 import FooterSimple from '@/components/sections/nav/FooterSimple.astro';
 import { schema as footerSimple } from '@/components/sections/nav/FooterSimple.schema';
+import HeaderBrand from '@/components/sections/nav/HeaderBrand.astro';
+import { schema as headerBrand } from '@/components/sections/nav/HeaderBrand.schema';
+import FooterSalons from '@/components/sections/nav/FooterSalons.astro';
+import { schema as footerSalons } from '@/components/sections/nav/FooterSalons.schema';
 import FeaturesGrid from '@/components/sections/offer/FeaturesGrid.astro';
 import { schema as featuresGrid } from '@/components/sections/offer/FeaturesGrid.schema';
 import TestimonialsGrid from '@/components/sections/proof/TestimonialsGrid.astro';
@@ -25,6 +29,8 @@ import { schema as ctaBanner } from '@/components/sections/convert/CtaBanner.sch
 export const SECTION_REGISTRY = {
   'nav.header-simple': { schema: headerSimple, component: HeaderSimple, chrome: true },
   'nav.footer-simple': { schema: footerSimple, component: FooterSimple, chrome: true },
+  'nav.header-brand': { schema: headerBrand, component: HeaderBrand, chrome: true },
+  'nav.footer-salons': { schema: footerSalons, component: FooterSalons, chrome: true },
   'offer.features-grid': { schema: featuresGrid, component: FeaturesGrid },
   'proof.testimonials-grid': { schema: testimonialsGrid, component: TestimonialsGrid },
   'content.faq-accordion': { schema: faqAccordion, component: FaqAccordion },

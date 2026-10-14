@@ -7,9 +7,9 @@ import JsonLd from '@/components/seo/JsonLd.astro';
 // Chrome : une ligne d'import par variante (famille nav du registre de sections).
 // Changer de variante = changer ces deux imports + l'objet correspondant dans
 // src/lib/chrome.ts.
-import HeaderSimple from '@/components/sections/nav/HeaderSimple.astro';
-import FooterSimple from '@/components/sections/nav/FooterSimple.astro';
-import { SITE_HEADER, SITE_FOOTER } from '@/lib/chrome';
+import HeaderBrand from '@/components/sections/nav/HeaderBrand.astro';
+import FooterSalons from '@/components/sections/nav/FooterSalons.astro';
+import { SITE_HEADER, getSiteFooter } from '@/lib/chrome';
 
 type PageType = 'website' | 'article' | 'page' | 'service';
 
@@ -27,6 +27,8 @@ interface Props {
   serviceProvider?: string;
   faq?: { q: string; a: string }[];
   breadcrumbs?: { name: string; url: string }[];
+  // Nœuds JSON-LD propres à la page, ajoutés au @graph (ex. HairSalon de l'accueil).
+  graph?: Record<string, unknown>[];
 }
 
 const {
@@ -41,10 +43,12 @@ const {
   serviceProvider,
   faq,
   breadcrumbs,
+  graph,
 } = Astro.props;
 
 const seo = resolveSeo(meta, Astro.url.pathname);
 const ogType = type === 'article' ? 'article' : 'website';
+const siteFooter = await getSiteFooter();
 ---
 
 <!doctype html>
@@ -65,13 +69,14 @@ const ogType = type === 'article' ? 'article' : 'website';
       serviceProvider={serviceProvider}
       faq={faq}
       breadcrumbs={breadcrumbs}
+      graph={graph}
     />
   </head>
   <body class="flex min-h-screen flex-col">
-    <HeaderSimple section={SITE_HEADER} />
-    <main class="flex-1">
+    <HeaderBrand section={SITE_HEADER} />
+    <main id="contenu" class="flex-1">
       <slot />
     </main>
-    <FooterSimple section={SITE_FOOTER} />
+    <FooterSalons section={siteFooter} />
   </body>
 </html>

@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import Container from '@/components/ui/Container.astro';
+import Button from '@/components/ui/Button.astro';
+import type { HeaderBrandSection } from './HeaderBrand.schema';
+
+interface Props {
+  section: HeaderBrandSection;
+}
+const { section } = Astro.props;
+// Fond translucide flouté : --color-bg à 92 % (bg-bg/92).
+---
+
+<a
+  href="#contenu"
+  class="absolute -left-[9999px] top-2 z-50 rounded-lg bg-inverse px-4 py-2.5 text-inverse-fg focus:left-2"
+>
+  Aller au contenu
+</a>
+<header
+  class="sticky top-0 z-10 border-b border-border bg-bg/92 backdrop-blur-[10px] backdrop-saturate-140"
+>
+  <Container class="flex h-(--header-h) items-center justify-between gap-4">
+    <a href="/" aria-label={`${section.brand}, accueil`}>
+      <Image
+        src={section.logo}
+        alt={section.brand}
+        height={44}
+        class="h-11 w-auto rounded-lg"
+        loading="eager"
+      />
+    </a>
+    <nav class="hidden gap-6.5 text-[.9rem] md:flex" aria-label="Navigation principale">
+      {
+        section.nav.map((item) => (
+          <a href={item.href} class="text-muted no-underline transition-colors hover:text-fg">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <Button href={section.cta.href} size="sm">{section.cta.label}</Button>
+  </Container>
+</header>

@@ -1,59 +1,92 @@
 ---
-import { getCollection } from 'astro:content';
+import { getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Container from '@/components/ui/Container.astro';
 import Section from '@/components/ui/Section.astro';
-import Button from '@/components/ui/Button.astro';
-import Card from '@/components/ui/Card.astro';
+import SectionHead from '@/components/ui/SectionHead.astro';
+import Hero from '@/components/home/Hero.astro';
+import SalonCard from '@/components/home/SalonCard.astro';
+import FounderBio from '@/components/home/FounderBio.astro';
+import NewClient from '@/components/home/NewClient.astro';
+import SalonGallery from '@/components/home/SalonGallery.astro';
+import InstagramBand from '@/components/home/InstagramBand.astro';
+import NewsList from '@/components/home/NewsList.astro';
+import ShopBlock from '@/components/home/ShopBlock.astro';
+import { SITE } from '@/lib/site';
+import { getSalons, salonJsonLd } from '@/lib/salons';
+import { getActus } from '@/lib/actus';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 3);
+// Accueil : page sur mesure qui ASSEMBLE le contenu, sans texte propre.
+// Textes : src/content/accueil/accueil.md ; salons : src/content/salons/ ;
+// actus : src/content/actus/ ; téléphone, Instagram, menu : settings/site.json.
+const accueil = await getEntry('accueil', 'accueil');
+if (!accueil) throw new Error('src/content/accueil/accueil.md introuvable.');
+if (!SITE.phone) throw new Error('site.json : contact.phone est requis sur l’accueil.');
+const page = accueil.data;
+const phone = SITE.phone;
+const salons = await getSalons();
+const actus = await getActus();
+const salonNodes = await Promise.all(salons.map(salonJsonLd));
 
-const meta = {
-  title: 'Accueil',
-  description:
-    'Page d’accueil du template Astro statique. Remplacer cette description par la proposition de valeur réelle du site, formulée en 140 à 160 caractères.',
-};
+const meta = { title: page.title, description: SITE.description };
 ---
 
-<BaseLayout meta={meta} type="website">
-  <Section>
-    <Container class="text-center">
-      <p class="mb-3 text-sm font-medium text-accent">Template Astro statique</p>
-      <h1 class="mx-auto max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">
-        Titre principal de la home
-      </h1>
-      <p class="mx-auto mt-4 max-w-xl text-muted">
-        Sous-titre. Cette page est en <code>.astro</code> (sur-mesure). Le blog et les pages
-        éditoriales viennent de collections Markdown.
-      </p>
-      <div class="mt-8 flex justify-center gap-3">
-        <Button href="/blog">Voir le blog</Button>
-        <Button href="/a-propos" variant="outline">À propos</Button>
+<BaseLayout meta={meta} type="website" updatedDate={page.updatedDate} graph={salonNodes}>
+  <Hero hero={page.hero} stats={page.stats} bookingHref="#salons" phone={phone} />
+
+  <Section id="salons">
+    <Container>
+      <SectionHead eyebrow={page.salons.eyebrow} title={page.salons.title}>
+        {page.salons.intro}
+        {SITE.contact?.phoneNote} :
+        <a class="link-line font-bold whitespace-nowrap text-fg tabular-nums" href={phone.href}
+          >{phone.display}</a
+        >
+      </SectionHead>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-5.5">
+        {salons.map((salon) => <SalonCard salon={salon} />)}
       </div>
+      <p class="mt-8 max-w-[48ch] font-display text-[1.45rem] leading-[1.35] italic">
+        {page.salons.teamNote}
+      </p>
     </Container>
   </Section>
 
-  {
-    posts.length > 0 && (
-      <Section>
-        <Container>
-          <h2 class="mb-8 text-2xl font-semibold">Derniers articles</h2>
-          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <a href={`/blog/${post.id}`}>
-                <Card class="h-full transition-colors hover:border-accent">
-                  <h3 class="font-semibold">{post.data.title}</h3>
-                  <p class="mt-1 text-sm text-muted">
-                    {post.data.description}
-                  </p>
-                </Card>
-              </a>
-            ))}
-          </div>
-        </Container>
-      </Section>
-    )
-  }
+  <Section id="fondatrice">
+    <Container>
+      <FounderBio founder={page.founder} />
+    </Container>
+  </Section>
+
+  <Container>
+    <NewClient block={page.newClient} />
+  </Container>
+
+  <Section id="visite" class="mt-18">
+    <Container>
+      <SectionHead eyebrow={page.visit.eyebrow} title={page.visit.title}>
+        {page.visit.intro}
+      </SectionHead>
+      {salons.map((salon, i) => <SalonGallery salon={salon} first={i === 0} />)}
+    </Container>
+  </Section>
+
+  <Container>
+    <InstagramBand block={page.instagram} accounts={SITE.social.instagram} />
+  </Container>
+
+  <Section id="actu" class="mt-18">
+    <Container>
+      <SectionHead eyebrow={page.news.eyebrow} title={page.news.title}>
+        {page.news.intro}
+      </SectionHead>
+      <NewsList actus={actus} />
+    </Container>
+  </Section>
+
+  <Container>
+    <div id="boutique">
+      <ShopBlock block={page.shop} />
+    </div>
+  </Container>
 </BaseLayout>
