@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-14 — Retours de Nathalie : sa charte, son logo, ses textes
+- Charte de Nathalie rétablie : noir, champagne #B9AB90 et blanc ; or #75664A (assombri de sa maquette pour le petit texte) ; sur-titres Manrope capitales ; plus de rose ni d'écriture manuscrite (`Script.astro`, Sacramento, `hero.signature`, `founder.script` retirés ; variante de bouton `accent` → `champagne`).
+- Logo officiel (SVG issus de ses `.ai`, viewBox élargi, 12,6 Ko) en en-tête et pied de page ; favicon « W » champagne sur noir.
+- Bio de Nathalie (son texte, chapeau + citation), description de la fondatrice dans le JSON-LD.
+- Section « Mariages & événements » (`events` d'accueil.md, #evenementiel, entrée de menu « Mariages » à la place de « Visite »).
+- Collection `realisations` (avant/après) et section masquée tant qu'elle est vide.
+- Consultation nouvelle cliente : Planity Hyères ou standard.
+- Page `/mentions-legales/` (collection pages) liée depuis le pied de page (`legalLinks`).
+- Domaine définitif `www.women-coiffure.fr` noté, non posé dans `site:` (ne sert pas encore le site).
+
 ## 2026-10-14 — Site WOMEN Coiffure porté dans le socle
 - Accueil porté de la maquette de la mission nathalie (charte noir et blanc, accents manuscrits roses, logos SVG) : héros isolé (`home/Hero.astro`), salons, fondatrice, nouvelle cliente, galeries (carrousel mobile), Instagram, actualités, boutique ; chrome `nav.header-brand` + `nav.footer-salons` (barre fixe mobile).
 - Contenu éditable : collections `salons`, `actus`, `accueil` ; `site.json` étendu (téléphone, Instagram, bouton RDV, fondatrice). Horaires saisis en plages, texte et JSON-LD dérivés (`lib/horaires.ts`). JSON-LD : un HairSalon par salon.
