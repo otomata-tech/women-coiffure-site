@@ -68,6 +68,62 @@ visit:
   title: Entrez chez nous
   intro: "Bacs de soin, cabine de spa capillaire, espace couleur : un aperçu de nos trois adresses."
 
+# Section « Mariages & événements » (ancre #evenementiel), d'après l'affiche
+# et le flyer de Nathalie. Le téléphone vient de site.json.
+events:
+  eyebrow: Mariages & événements
+  title: Élégante. Pensée. Sur mesure.
+  intro: L’art du chignon, par Nathalie & Davy, coiffeurs-maquilleurs de carrière. Ce savoir-faire, aujourd’hui de plus en plus rare.
+  # Photo facultative (mariée, chignon…), posée au-dessus de « Une coiffure
+  # pensée pour vous » : déposer le fichier à côté de ce fichier, puis
+  # décommenter les deux lignes.
+  # photo: ./mariee-chignon.webp
+  # photoAlt: Chignon de mariée orné de fleurs, vu de dos
+  approach:
+    title: Une coiffure pensée pour vous
+    text: "Chaque coiffure est pensée dans son intégralité : visualisée, créée, puis adaptée à votre chevelure, à vos envies et à votre robe. Nous préparons votre cheveu en amont pour rendre possible la coiffure dont vous rêvez, sans l’abîmer et sans pression."
+  journey:
+    title: Votre parcours
+    # Les numéros 01, 02… se posent seuls, dans l'ordre de la liste.
+    steps:
+      - title: La rencontre
+        text: en salon ou en visio
+      - title: L’essai
+        text: trois styles testés, aucun regret
+      - title: La veille
+        text: spa capillaire et préparation du cheveu
+      - title: Le jour J
+        text: mise en beauté et accompagnement
+    note: Plusieurs formules possibles, jusqu’aux retouches au vin d’honneur.
+  party:
+    title: Pour vous et votre cortège
+    services: Coiffure & maquillage
+    guests:
+      - mariée
+      - mamans
+      - témoins
+      - invitées
+      - petites demoiselles d’honneur
+  occasions:
+    - Mariages
+    - Soirées
+    - Shootings
+    - Événements privés & pros
+  conditions:
+    - Jusqu’à 30 personnes
+    - Un seul mariage par samedi
+    - Sur le lieu de votre choix
+  team:
+    names: Nathalie & Davy
+    detail: 25 ans d’expérience chacun
+  pricing: Tarifs sur demande · frais de déplacement selon la distance
+  gallery:
+    label: Découvrez nos mariées
+    href: https://www.instagram.com/womencoiffure.event/
+  booking:
+    label: Réserver sur Planity · Hyères
+    href: https://www.planity.com/women-coiffure-hyeres-83400
+
 instagram:
   eyebrow: Suivez-nous
   title: Nos réalisations au quotidien

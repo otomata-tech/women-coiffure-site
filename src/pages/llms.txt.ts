@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { SITE } from '@/lib/site';
 import { getSalons, formatAddress } from '@/lib/salons';
 import { formatOpeningHours } from '@/lib/horaires';
@@ -17,6 +17,8 @@ export async function GET() {
   );
   const salons = await getSalons();
   const actus = await getActus();
+  const events = (await getEntry('accueil', 'accueil'))?.data.events;
+  if (!events) throw new Error('src/content/accueil/accueil.md introuvable.');
 
   const lines = [
     `# ${SITE.name}`,
@@ -60,6 +62,9 @@ export async function GET() {
       ({ data }) =>
         `- ${SITE.name} ${data.name} : ${formatAddress(data)}. ${formatOpeningHours(data.openingHours)}. Réservation en ligne : ${data.bookingUrl}`,
     ),
+    '',
+    `## ${events.eyebrow}`,
+    `${events.intro} ${events.occasions.join(', ')}. ${events.conditions.join(' · ')}. ${events.pricing}. Réservation : ${events.booking.href} ; détails : ${url('/#evenementiel')}`,
     '',
     '## Actualités',
     ...actus.map((a) => `- ${formatActuDate(a.data.date)} : ${a.data.title}`),

@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Button from '@/components/ui/Button.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Icon from '@/components/ui/Icon.astro';
+
+// Mariages & événements : accroche et approche, parcours en quatre étapes
+// numérotées, cortège / prestations / équipe, puis réservation (Planity,
+// Instagram des mariées, téléphone). Tout le texte vient de `events` (accueil.md).
+interface Props {
+  block: CollectionEntry<'accueil'>['data']['events'];
+  phone: { display: string; href: string };
+}
+const { block, phone } = Astro.props;
+const number = (i: number) => String(i + 1).padStart(2, '0');
+const h3 = 'text-[clamp(1.6rem,3vw,2rem)]';
+---
+
+<div class="grid grid-cols-1 items-start gap-8 tab:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] tab:gap-14">
+  <div>
+    <Eyebrow>{block.eyebrow}</Eyebrow>
+    <h2 class="mt-3 text-[clamp(2.2rem,5vw,3.3rem)]">{block.title}</h2>
+    <p class="mt-5 max-w-[34ch] font-display text-[clamp(1.4rem,2.6vw,1.7rem)] leading-[1.3] italic">
+      {block.intro}
+    </p>
+  </div>
+  <div class="grid gap-5 rounded-3xl bg-soft p-6 md:p-8">
+    {
+      block.photo && block.photoAlt && (
+        <Image
+          src={block.photo}
+          alt={block.photoAlt}
+          widths={[500, 1000]}
+          sizes="(min-width: 860px) 480px, 100vw"
+          class="aspect-4/3 h-auto w-full rounded-tile object-cover"
+        />
+      )
+    }
+    <h3 class={h3}>{block.approach.title}</h3>
+    <p class="m-0 text-muted">{block.approach.text}</p>
+  </div>
+</div>
+
+<h3 class={`mt-14 mb-5 ${h3}`}>{block.journey.title}</h3>
+<ol class="grid grid-cols-2 gap-x-5 border-t border-fg xs:gap-x-8 tab:grid-cols-4">
+  {
+    block.journey.steps.map((step, i) => (
+      <li class="grid content-start gap-1.5 border-b border-border pt-5 pb-6">
+        <span class="font-display text-[2.6rem] leading-none text-accent lining-nums" aria-hidden="true">
+          {number(i)}
+        </span>
+        <b class="mt-1 text-[.8rem] tracking-[.16em] uppercase">{step.title}</b>
+        <span class="text-[.93rem] text-muted">{step.text}</span>
+      </li>
+    ))
+  }
+</ol>
+<p class="mt-5 font-display text-[1.35rem] leading-[1.35] italic">{block.journey.note}</p>
+
+<div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
+  <div>
+    <h3 class={h3}>{block.party.title}</h3>
+    <p class="mt-3 mb-1 font-bold">{block.party.services}</p>
+    <p class="m-0 text-muted">{block.party.guests.join(' · ')}</p>
+  </div>
+  <div>
+    <ul class="flex flex-wrap gap-2">
+      {
+        block.occasions.map((o) => (
+          <li class="rounded-full border border-border bg-surface px-3 py-1.5 text-[.78rem] font-bold tracking-[.06em] uppercase">
+            {o}
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="mt-4 grid gap-1.5 text-[.93rem]">
+      {
+        block.conditions.map((c) => (
+          <li class="flex items-baseline gap-2.5">
+            <span class="size-1.5 shrink-0 translate-y-[-.15em] rounded-full bg-accent" aria-hidden="true" />
+            {c}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div>
+    <p class="m-0 font-display text-[clamp(1.6rem,3vw,2rem)] leading-[1.1]">{block.team.names}</p>
+    <p class="mt-1 mb-3 text-muted">{block.team.detail}</p>
+    <p class="m-0 text-[.88rem] text-muted">{block.pricing}</p>
+  </div>
+</div>
+
+<div class="mt-10 flex flex-wrap gap-3">
+  <Button href={block.booking.href}>{block.booking.label}</Button>
+  <Button href={block.gallery.href} variant="outline">
+    <Icon name="instagram" size={18} />
+    {block.gallery.label}
+  </Button>
+  <Button href={phone.href} variant="outline">
+    <Icon name="phone" size={16} />
+    {phone.display}
+  </Button>
+</div>

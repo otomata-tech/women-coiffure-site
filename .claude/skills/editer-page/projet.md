@@ -7,4 +7,5 @@ Prime sur SKILL.md § Traduire la demande : l'accueil n'a pas de texte en dur, i
   - Une adresse change aussi le lien Maps (`mapsUrl`) : le signaler.
 - **Actu existante** → `src/content/actus/<slug>.md` : titre et `tag` dans l'en-tête, texte dans le corps.
 - **Autres textes de l'accueil** → `src/content/accueil/accueil.md`, puis bumper `updatedDate`. La bio de Nathalie (`founder.bio`) est son texte : un tiret = un paragraphe, le premier s'affiche en chapeau, `- quote: "…"` met une phrase en citation. Typographie française (apostrophe ’, espace insécable avant « : »), sans réécrire.
+- **Mariages & événements** → bloc `events` de `accueil.md` (accroche, parcours, cortège, prestations, tarifs, liens). Les étapes du parcours se numérotent seules dans l'ordre de la liste ; le téléphone vient de `site.json`. Une photo s'ajoute en décommentant `photo` / `photoAlt` (fichier à côté d'`accueil.md`, voir `gerer-images`).
 - Téléphone, menu, Instagram → `editer-global`.

@@ -193,6 +193,32 @@ const accueil = defineCollection({
       }),
       newClient: z.object({ ...titreDeBloc, text: z.string(), cta: lien }),
       visit: z.object({ ...titreDeBloc, intro: z.string() }),
+      // Section « Mariages & événements » (#evenementiel).
+      events: z
+        .object({
+          ...titreDeBloc,
+          intro: z.string(),
+          photo: image().optional(), // encart facultatif au-dessus de `approach`
+          photoAlt: z.string().optional(),
+          approach: z.object({ title: z.string(), text: z.string() }),
+          // Étapes numérotées 01, 02… dans l'ordre de la liste.
+          journey: z.object({
+            title: z.string(),
+            steps: z.array(z.object({ title: z.string(), text: z.string() })).min(1),
+            note: z.string(),
+          }),
+          party: z.object({ title: z.string(), services: z.string(), guests: z.array(z.string()).min(1) }),
+          occasions: z.array(z.string()).min(1),
+          conditions: z.array(z.string()),
+          team: z.object({ names: z.string(), detail: z.string() }),
+          pricing: z.string(),
+          gallery: lien,
+          booking: lien,
+        })
+        .refine((e) => !e.photo || !!e.photoAlt, {
+          message: 'events.photoAlt est requis quand events.photo est défini',
+          path: ['photoAlt'],
+        }),
       instagram: z.object({ ...titreDeBloc, text: z.string() }),
       news: z.object({ ...titreDeBloc, intro: z.string() }),
       shop: z.object({ ...titreDeBloc, text: z.string(), cta: lien }),

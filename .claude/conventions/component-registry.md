@@ -92,6 +92,7 @@ Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-m
 | FounderBio.astro | founder | Portrait + bio de la fondatrice, puces |
 | NewClient.astro | block | Encart « Nouvelle cliente » sur fond doux |
 | SalonGallery.astro | salon, first? | Galerie d'un salon : mosaïque 4 colonnes (big/wide) en bureau, carrousel aimanté sur mobile (0 JS) |
+| EventsSection.astro | block, phone | Section « Mariages & événements » (#evenementiel) : accroche + approche (photo facultative), parcours numéroté, cortège / prestations / équipe, boutons Planity, Instagram des mariées, téléphone |
 | InstagramBand.astro | block, accounts | Bandeau sombre vers les comptes Instagram |
 | NewsList.astro | actus | Grille des actualités (date, étiquette, titre, corps Markdown, lien) |
 | ShopBlock.astro | block | Bloc boutique click & collect sur bande sombre |
