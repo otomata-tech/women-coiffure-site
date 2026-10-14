@@ -208,7 +208,8 @@ const accueil = defineCollection({
           .rest(z.union([z.string(), z.object({ quote: z.string() })])),
         facts: z.array(z.string()),
       }),
-      newClient: z.object({ ...titreDeBloc, text: z.string(), cta: lien }),
+      // booking : phrase sur la réservation, suivie du numéro du standard.
+      newClient: z.object({ ...titreDeBloc, text: z.string(), booking: z.string(), cta: lien }),
       visit: z.object({ ...titreDeBloc, intro: z.string() }),
       // Section « Mariages & événements » (#evenementiel).
       realisations: z.object({ ...titreDeBloc, intro: z.string() }),

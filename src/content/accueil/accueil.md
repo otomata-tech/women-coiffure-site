@@ -59,6 +59,8 @@ newClient:
   eyebrow: Nouvelle cliente
   title: On fait connaissance avant le premier rendez-vous
   text: Une consultation en visio ou en salon pour parler de vos envies et de l'histoire de vos cheveux. Le jour J, votre projet est déjà pensé.
+  # Suivi du numéro du standard (site.json) en lien d'appel.
+  booking: "Réservez-la sur Planity, onglet consultation en visio de la page du salon de Hyères, ou par téléphone au standard :"
   cta:
     label: Réserver ma consultation
     href: https://www.planity.com/women-coiffure-hyeres-83400

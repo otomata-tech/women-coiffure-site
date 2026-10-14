@@ -3,11 +3,13 @@ import type { CollectionEntry } from 'astro:content';
 import Button from '@/components/ui/Button.astro';
 import Eyebrow from '@/components/ui/Eyebrow.astro';
 
-// Encart « Nouvelle cliente » : consultation avant le premier rendez-vous.
+// Encart « Nouvelle cliente » : consultation avant le premier rendez-vous,
+// réservable sur Planity (Hyères) ou par téléphone au standard.
 interface Props {
   block: CollectionEntry<'accueil'>['data']['newClient'];
+  phone: { display: string; href: string };
 }
-const { block } = Astro.props;
+const { block, phone } = Astro.props;
 ---
 
 <div
@@ -17,6 +19,12 @@ const { block } = Astro.props;
     <Eyebrow>{block.eyebrow}</Eyebrow>
     <h2 class="mt-2.5 text-[clamp(1.9rem,4vw,2.7rem)]">{block.title}</h2>
     <p class="mt-2.5 max-w-[56ch] text-muted">{block.text}</p>
+    <p class="mt-2 max-w-[56ch] text-muted">
+      {block.booking}{' '}
+      <a class="link-line font-bold whitespace-nowrap text-fg tabular-nums" href={phone.href}
+        >{phone.display}</a
+      >
+    </p>
   </div>
   <Button href={block.cta.href}>
     {block.cta.label}

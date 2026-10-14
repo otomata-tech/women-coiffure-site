@@ -90,7 +90,7 @@ Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-m
 | Hero.astro | hero, stats, bookingHref, phone | Titre (fin en italique or), boutons RDV/appel, portrait en arche avec étiquette, bandeau de 4 chiffres. Isolé : seul bloc à toucher pour changer le haut de page |
 | SalonCard.astro | salon | Carte d'un salon (photo, équipe, adresse, horaires dérivés, avis, bouton Planity) |
 | FounderBio.astro | founder | Portrait + bio de la fondatrice, puces |
-| NewClient.astro | block | Encart « Nouvelle cliente » sur fond doux |
+| NewClient.astro | block, phone | Encart « Nouvelle cliente » sur fond doux : texte, phrase de réservation suivie du numéro du standard (lien d'appel), bouton Planity Hyères |
 | SalonGallery.astro | salon, first? | Galerie d'un salon : mosaïque 4 colonnes (big/wide) en bureau, carrousel aimanté sur mobile (0 JS) |
 | RealisationsList.astro | items | Réalisations avant/après (photos côte à côte libellées « Avant » / « Après », salon · date, titre, texte) : grille 2-3 colonnes en bureau, carrousel aimanté sur mobile (0 JS). Rendue par l'accueil seulement si la collection `realisations` n'est pas vide |
 | EventsSection.astro | block, phone | Section « Mariages & événements » (#evenementiel) : accroche + approche (photo facultative), parcours numéroté, cortège / prestations / équipe, boutons Planity, Instagram des mariées, téléphone |
