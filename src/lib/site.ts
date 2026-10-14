@@ -19,6 +19,8 @@ const settingsSchema = z.object({
   // Phrase d'identité du pied de page.
   tagline: z.string().min(1),
   nav: z.array(z.object({ label: z.string().min(1), href: z.string().min(1) })),
+  // Liens de service du bas du pied de page (mentions légales).
+  legalLinks: z.array(z.object({ label: z.string().min(1), href: z.string().min(1) })),
   // Bouton « Prendre RDV » de l'en-tête et de la barre fixe mobile.
   bookingCta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
   // Libellé du bouton d'appel de la barre fixe mobile.
@@ -102,6 +104,7 @@ export const SITE = {
   themeColor: TECHNICAL.themeColor,
   logo: { onLight: logoDark, onDark: logoLight },
   tagline: SETTINGS.tagline,
+  legalLinks: SETTINGS.legalLinks,
   bookingCta: SETTINGS.bookingCta,
   callLabel: SETTINGS.callLabel,
   phone,

@@ -61,7 +61,7 @@ rendre une variante chrome depuis une page.
 | nav.header-simple (chrome) | nav/HeaderSimple.astro | Header : marque + nav principale (brand, nav[]) — non utilisé sur ce site |
 | nav.footer-simple (chrome) | nav/FooterSimple.astro | Footer : copyright + liens de service (organizationName, links[]) — non utilisé sur ce site |
 | nav.header-brand (chrome, **actif**) | nav/HeaderBrand.astro | En-tête collant flouté : lien d'évitement, logo, nav (masquée < md), bouton RDV (brand, logo, nav[], cta) |
-| nav.footer-salons (chrome, **actif**) | nav/FooterSalons.astro | Pied sombre en colonnes (logo, phrase, téléphone, réservation par salon, Instagram) + barre fixe mobile Prendre RDV / Appeler |
+| nav.footer-salons (chrome, **actif**) | nav/FooterSalons.astro | Pied sombre en colonnes (logo, phrase, téléphone, réservation par salon, Instagram), ligne du bas © + liens de service (`legal`, mentions légales) + barre fixe mobile Prendre RDV / Appeler |
 | offer.features-grid | offer/FeaturesGrid.astro | Grille de features en Card (3 colonnes) |
 | proof.testimonials-grid | proof/TestimonialsGrid.astro | Témoignages en figure/blockquote (2 colonnes) |
 | content.faq-accordion | content/FaqAccordion.astro | FAQ en colonne de lecture (réutilise Faq.astro) |

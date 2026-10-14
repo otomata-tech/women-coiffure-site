@@ -11,6 +11,7 @@
     { "label": "Actu", "href": "/#actu" },
     { "label": "Boutique", "href": "/#boutique" }
   ],
+  "legalLinks": [{ "label": "Mentions légales", "href": "/mentions-legales/" }],
   "bookingCta": { "label": "Prendre RDV", "href": "/#salons" },
   "callLabel": "Appeler",
   "organizationName": "WOMEN Coiffure",

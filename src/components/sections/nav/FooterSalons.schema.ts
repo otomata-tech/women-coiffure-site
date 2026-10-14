@@ -14,6 +14,7 @@ export const schema = z.object({
   phone: z.object({ display: z.string(), href: z.string(), note: z.string().optional() }),
   booking: z.array(link), // un lien de réservation par salon
   instagram: z.array(link),
+  legal: z.array(link), // liens de service de la ligne du bas (mentions légales)
   stickyBar: z.object({ cta: link, callLabel: z.string() }),
 });
 

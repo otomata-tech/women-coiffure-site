@@ -29,6 +29,7 @@ export async function getSiteFooter(): Promise<FooterSalonsSection> {
     phone: { ...SITE.phone, note: SITE.contact?.phoneNote },
     booking: salons.map((s) => ({ label: s.data.name, href: s.data.bookingUrl })),
     instagram: SITE.social.instagram.map((a) => ({ label: a.handle, href: a.url })),
+    legal: [...SITE.legalLinks],
     stickyBar: { cta: SITE.bookingCta, callLabel: SITE.callLabel },
   };
 }
