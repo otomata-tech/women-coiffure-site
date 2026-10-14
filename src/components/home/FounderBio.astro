@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Eyebrow from '@/components/ui/Eyebrow.astro';
-import Script from '@/components/ui/Script.astro';
 
 // Portrait et biographie de la fondatrice, étiquettes de qualités.
 interface Props {
@@ -22,8 +21,7 @@ const { founder } = Astro.props;
   />
   <div>
     <Eyebrow>{founder.eyebrow}</Eyebrow>
-    <h2 class="mt-3 mb-1 text-[clamp(2.4rem,5.5vw,3.6rem)]">{founder.name}</h2>
-    <Script as="p" class="mb-5 text-[2.4rem]">{founder.script}</Script>
+    <h2 class="mt-3 mb-5 text-[clamp(2.4rem,5.5vw,3.6rem)]">{founder.name}</h2>
     {founder.bio.map((p) => <p class="mb-4 max-w-[52ch] text-[1.05rem]">{p}</p>)}
     <ul class="mt-6 mb-4 flex flex-wrap gap-2">
       {

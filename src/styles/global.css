@@ -2,8 +2,8 @@
 
 /*
   Polices auto-hébergées (public/fonts/, préchargées par BaseHead) : Cormorant
-  Garamond pour les titres, Manrope pour le texte, Sacramento pour les accents
-  manuscrits.
+  Garamond pour les titres et les accents en italique, Manrope pour le texte et
+  les sur-titres.
 */
 @font-face {
   font-family: 'Cormorant Garamond';
@@ -20,13 +20,6 @@
   src: url('/fonts/cormorant-garamond-italic.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'Sacramento';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/sacramento.woff2') format('woff2');
-}
-@font-face {
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400 700;
@@ -35,8 +28,9 @@
 }
 
 /*
-  Charte WOMEN Coiffure : noir et blanc du logo, portraits noir et blanc,
-  accents manuscrits roses (docs/design/system.md). Tailwind 4 : configuration CSS-first via @theme.
+  Charte de Nathalie : noir, champagne et blanc, comme ses logos ; portraits noir
+  et blanc, accents or en italique (docs/design/system.md). Tailwind 4 :
+  configuration CSS-first via @theme.
 */
 @theme {
   --color-bg: #fffefb;
@@ -44,15 +38,16 @@
   --color-muted: #625b51;
   --color-border: #ece6db;
   --color-surface: #ffffff;
-  /* Rose soutenu : notes, dates, boutons roses. 5,75:1 sur bg, 5,8:1 sous
-     texte blanc. */
-  --color-accent: #b8287a;
-  --color-accent-fg: #ffffff;
-  /* Rose vif : écriture manuscrite (grands corps), filets de liens, focus.
-     4,1:1 sur bg : jamais pour du texte courant. */
-  --color-pink: #d84095;
+  /* Or : sur-titres, notes, dates, accents en italique, anneau de focus. Version
+     assombrie de l'or de la maquette (#8A7854, 4,25:1) pour tenir le petit
+     texte : 5,54:1 sur bg, 4,80:1 sur soft. */
+  --color-accent: #75664a;
+  /* Champagne de la charte (#B9AB90) : boutons sur bande sombre et barre mobile
+     (encre inverse dessus : 8,75:1), sur-titres sur bande sombre, filets de
+     liens. Décoratif sur fond clair (2,24:1) : jamais de texte clair dessus. */
+  --color-champagne: #b9ab90;
   /* Fond doux des blocs (spécialités, « Nouvelle cliente », étiquettes). */
-  --color-soft: #f4f1ec;
+  --color-soft: #f3ede2;
 
   /* Bande sombre (bandeau Instagram, boutique, pied de page, barre mobile). */
   --color-inverse: #0b0a09;
@@ -69,13 +64,12 @@
 
   --font-sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   --font-display: 'Cormorant Garamond', 'Didot', 'Times New Roman', serif;
-  --font-script: 'Sacramento', 'Brush Script MT', cursive;
 
   --radius: 0.5rem;
   --radius-tile: 14px; /* vignettes de galerie */
   --radius-card: 18px; /* cartes salon, chiffres clés */
   --radius-panel: 22px; /* portraits */
-  /* Étiquette posée sur une photo (« By Nath »). */
+  /* Étiquette posée sur une photo (légende du portrait du haut de page). */
   --shadow-tag: 0 10px 30px rgb(11 10 9 / 0.12);
   /* Colonne de lecture. Pas "--container-prose" : max-w-prose est un utilitaire
      statique de Tailwind (65ch) que le token n'écrase pas. */
@@ -128,7 +122,7 @@ body {
     text-wrap: pretty;
   }
   :focus-visible {
-    outline: 2px solid var(--color-pink);
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -138,10 +132,10 @@ body {
   }
 }
 
-/* Lien souligné d'un filet rose (adresses, numéro, liens d'actu). */
+/* Lien souligné d'un filet champagne (adresses, numéro, liens d'actu). */
 @utility link-line {
   text-decoration: none;
-  border-bottom: 1px solid var(--color-pink);
+  border-bottom: 1px solid var(--color-champagne);
   transition: border-color 0.15s;
   &:hover {
     border-bottom-color: currentColor;

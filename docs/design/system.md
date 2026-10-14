@@ -1,6 +1,6 @@
 # Design system — WOMEN Coiffure
-Charte de la maquette du 2026-10-14 : noir et blanc du logo, portraits noir et blanc, accents manuscrits roses. Identité visuelle encore en recherche (logo, héros) : logo référencé dans src/lib/site.ts seul, héros isolé dans src/components/home/Hero.astro.
-Tokens dans src/styles/global.css (@theme Tailwind 4) : bg #FFFEFB, fg #151311, muted #625B51, border #ECE6DB, surface #FFF, soft #F4F1EC (fonds doux), accent #B8287A (rose soutenu : notes, dates, boutons roses), pink #D84095 (manuscrit, filets de liens, focus), inverse #0B0A09 / inverse-fg #F2EEE7 / inverse-muted #B8AF9F / inverse-border #2C2824. Polices : Manrope (font-sans), Cormorant Garamond (font-display : titres, sur-titres), Sacramento (font-script : accents manuscrits). Rayons : tile 14px, card 18px, panel 22px. Conteneur 1120px (container-site). Points de rupture ajoutés : xs 560px, tab 860px (md 768px tient le 760px de la maquette). En-tête collant de 76px (--header-h).
+Charte de Nathalie (« J'aimais beaucoup mon code couleur et la typo, ils représentent mon ID », 2026-10-14) : noir, champagne #B9AB90 et blanc ; ses logos officiels portent le « W » et le crochet en #A29282. Référence typo et couleurs : sa maquette d'origine (drive de la mission, `sources/2026-10-14-maquette-site-web/WOMEN Coiffure.html`) — titres Cormorant Garamond, accents en italique or, sur-titres Manrope capitales espacées or, boutons noirs et champagne. Aucun rose, aucune écriture manuscrite. Logo référencé dans src/lib/site.ts seul, héros isolé dans src/components/home/Hero.astro (texte à gauche, portrait N&B en arche à droite, bandeau de 4 chiffres ; pas de bannière noire).
+Tokens dans src/styles/global.css (@theme Tailwind 4) : bg #FFFEFB, fg #151311, muted #625B51, border #ECE6DB, surface #FFF, soft #F3EDE2 (fonds doux), accent #75664A (or assombri : sur-titres, notes, dates, italiques, focus), champagne #B9AB90 (boutons sur bande sombre, sur-titres sur bande sombre, filets de liens), inverse #0B0A09 / inverse-fg #F2EEE7 / inverse-muted #B8AF9F / inverse-border #2C2824. Polices : Manrope (font-sans : texte, sur-titres), Cormorant Garamond (font-display : titres, italiques or). Rayons : tile 14px, card 18px, panel 22px. Conteneur 1120px (container-site). Points de rupture ajoutés : xs 560px, tab 860px (md 768px tient le 760px de la maquette). En-tête collant de 76px (--header-h).
 Quand un monde visuel s'engage (site dérivé, phase design) : remplir ce fichier au format .claude/templates/design-system.md — les règles de craft vivent dans le skill design-craft, pas ici.
 
 ## Rôles des tokens
@@ -9,8 +9,8 @@ Quand un monde visuel s'engage (site dérivé, phase design) : remplir ce fichie
 | bg / fg | Papier et encre de la page | `bg-bg`, `text-fg` |
 | surface / border | Surface de carte et son filet | `bg-surface`, `border-border` |
 | muted | Texte secondaire ET bordure de contrôle (5,35:1 sur bg) | `text-muted`, `border-muted` |
-| accent / accent-fg | Rose soutenu : notes d'avis, dates d'actu, bouton `accent` | `bg-accent`, `text-accent` |
-| pink | Rose vif : écriture manuscrite (grands corps), filet `link-line`, anneau de focus — jamais pour du texte courant (4,1:1) | `text-pink`, `link-line` |
+| accent | Or (#8A7854 de la maquette, assombri pour le petit texte) : sur-titres, notes d'avis, dates d'actu, fin du titre en italique, anneau de focus | `text-accent` |
+| champagne | Champagne de la charte : bouton `champagne` (bande sombre, barre mobile), sur-titre `tone="inverse"`, filet `link-line` — jamais de texte posé sur fond clair (2,24:1) | `bg-champagne`, `text-champagne`, `link-line` |
 | soft | Fond doux : spécialités, « Nouvelle cliente », étiquettes d'actu | `bg-soft` |
 | inverse / inverse-fg / inverse-muted | Bande sombre posée sur une page claire, et voile sur média (`bg-inverse/50`) | `bg-inverse`, `text-inverse-fg`, `border-inverse-muted` |
 | error / success (+ `-on-inverse`) | Message d'état d'un formulaire. Le suffixe nomme la SURFACE qui porte le texte, pas une seconde nuance : aucune valeur unique ne tient 4,5:1 sur `bg` ET sur `inverse` (voir ci-dessous) | `text-error`, `text-success`, `text-error-on-inverse`, `text-success-on-inverse` |
@@ -29,15 +29,17 @@ Les paires hors de ces 4 pages (surface inverse, tons de Badge) se recalculent �
 | fg / bg | 18,38:1 | 4,5 |
 | muted / surface | 5,05:1 | 4,5 |
 | muted / bg (placeholder de champ) | 6,64:1 | 4,5 |
-| accent-fg / accent | 5,8:1 | 4,5 |
-| accent / bg | 5,75:1 | 4,5 |
-| muted / soft | 5,95:1 | 4,5 |
-| pink / bg (manuscrit ≥ 2rem seulement) | 4,09:1 | 3 (grand texte) |
+| accent / bg | 5,54:1 | 4,5 |
+| accent / surface | 5,59:1 | 4,5 |
+| accent / soft (sur-titre « Nouvelle cliente », numéros) | 4,80:1 | 4,5 |
+| muted / soft | 5,75:1 | 4,5 |
+| inverse / champagne (Button champagne) | 8,75:1 | 4,5 |
+| champagne / inverse (sur-titre tone inverse) | 8,75:1 | 4,5 |
 | bordure muted / bg (Button outline) | 5,35:1 | 3 |
-| anneau accent / bg | 4,72:1 | 3 |
+| anneau accent / bg | 5,54:1 | 3 |
+| anneau accent / inverse | 3,54:1 | 3 |
 | inverse-fg / inverse | 17,25:1 | 4,5 |
 | bordure inverse-muted / inverse | 7,58:1 | 3 |
-| accent / inverse (surface de bouton) | 3,88:1 | 3 |
 | error / bg | 5,90:1 | 4,5 |
 | success / bg | 5,51:1 | 4,5 |
 | error-on-inverse / inverse | 6,60:1 | 4,5 |

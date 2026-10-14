@@ -5,10 +5,9 @@ import Container from '@/components/ui/Container.astro';
 import Button from '@/components/ui/Button.astro';
 import Eyebrow from '@/components/ui/Eyebrow.astro';
 import Icon from '@/components/ui/Icon.astro';
-import Script from '@/components/ui/Script.astro';
 
-// Haut de page : titre et boutons RDV/appel à gauche, portrait en arche à
-// droite avec sa signature manuscrite, bandeau de quatre chiffres clés.
+// Haut de page : titre (fin en italique or) et boutons RDV/appel à gauche,
+// portrait en arche à droite avec son étiquette, bandeau de quatre chiffres clés.
 // Bloc isolé à dessein (identité visuelle en cours de recherche) : le remplacer
 // ne touche que ce composant et les blocs `hero`/`stats` de accueil.md.
 type Accueil = CollectionEntry<'accueil'>['data'];
@@ -29,7 +28,7 @@ const { hero, stats, bookingHref, phone } = Astro.props;
       <Eyebrow>{hero.eyebrow}</Eyebrow>
       <h1 class="mt-4.5 mb-5.5 text-[clamp(2.6rem,6vw,4.6rem)] leading-[1.02]">
         {hero.title}
-        <Script class="mt-[.12em] -ml-[.04em] block text-[1.18em]">{hero.titleEmphasis}</Script>
+        <em class="block text-accent italic">{hero.titleEmphasis}</em>
       </h1>
       <p class="mb-7.5 max-w-[42ch] text-[clamp(1.08rem,2.2vw,1.25rem)]">{hero.lead}</p>
       <div class="flex flex-wrap gap-3">
@@ -51,10 +50,9 @@ const { hero, stats, bookingHref, phone } = Astro.props;
         fetchpriority="high"
       />
       <figcaption
-        class="absolute bottom-7 left-3 grid gap-0.5 rounded-tile bg-bg px-4.5 py-3 shadow-tag tab:-left-4.5"
+        class="absolute bottom-7 left-3 max-w-[calc(100%-1.5rem)] rounded-tile bg-bg px-4.5 py-3 text-[.82rem] leading-snug font-semibold shadow-tag tab:-left-4.5"
       >
-        <Script class="text-[2rem]">{hero.signature}</Script>
-        <span class="text-[.8rem] text-muted">{hero.caption}</span>
+        {hero.caption}
       </figcaption>
     </figure>
   </div>

@@ -1,10 +1,10 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Button from '@/components/ui/Button.astro';
-import Script from '@/components/ui/Script.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
 import Icon from '@/components/ui/Icon.astro';
 
-// Bandeau sombre vers les comptes Instagram (le principal en premier, en rose).
+// Bandeau sombre vers les comptes Instagram (le principal en premier, champagne).
 interface Props {
   block: CollectionEntry<'accueil'>['data']['instagram'];
   accounts: { handle: string; url: string }[];
@@ -16,7 +16,7 @@ const { block, accounts } = Astro.props;
   class="flex flex-wrap items-center justify-between gap-5 rounded-3xl bg-inverse px-9 py-8 text-inverse-fg"
 >
   <div>
-    <Script class="text-[2.2rem]">{block.eyebrow}</Script>
+    <Eyebrow tone="inverse">{block.eyebrow}</Eyebrow>
     <h2 class="mt-2 text-[clamp(1.7rem,4vw,2.4rem)]">{block.title}</h2>
     <p class="mt-1.5 text-inverse-muted">{block.text}</p>
   </div>
@@ -24,7 +24,7 @@ const { block, accounts } = Astro.props;
     {
       accounts.map((account, i) =>
         i === 0 ? (
-          <Button href={account.url} variant="accent" tone="inverse">
+          <Button href={account.url} variant="champagne" tone="inverse">
             <Icon name="instagram" size={18} />
             {account.handle}
           </Button>

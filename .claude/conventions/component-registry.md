@@ -17,9 +17,8 @@ composant OU d'écrire du markup de section. Tout nouveau composant/variante →
 | --- | --- | --- |
 | Container.astro | class?, prose? | Largeur max + padding (prose = colonne de lecture) |
 | Section.astro | class? | Espacement vertical de section |
-| Button.astro | href?, variant(primary/outline/accent)?, tone(default/inverse)?, size(md/sm/bar)?, type(button/submit)?, class? | Bouton pilule/lien (type pour usage formulaire ; tone = surface qui le porte ; `bar` = bouton étiré de la barre mobile). Un `href` en http(s) s'ouvre dans un nouvel onglet |
-| Eyebrow.astro | tone(default/inverse)?, class? | Sur-titre serif en capitales espacées au-dessus d'un titre |
-| Script.astro | as(span/p)?, class? | Accent manuscrit rose (Sacramento) ; taille au call-site |
+| Button.astro | href?, variant(primary/outline/champagne)?, tone(default/inverse)?, size(md/sm/bar)?, type(button/submit)?, class? | Bouton pilule/lien (type pour usage formulaire ; tone = surface qui le porte ; `bar` = bouton étiré de la barre mobile). Un `href` en http(s) s'ouvre dans un nouvel onglet |
+| Eyebrow.astro | tone(default/inverse)?, class? | Sur-titre Manrope en capitales espacées au-dessus d'un titre (or sur fond clair, champagne sur bande sombre) |
 | SectionHead.astro | eyebrow, title + slot (chapeau) | En-tête de section : Eyebrow + H2 + chapeau |
 | Card.astro | padding(default/none)?, tone(default/inverse)?, class? | **Canonique surface de carte** : fond + bordure + radius. `padding="none"` = contenu bord à bord (rogné au radius), pas de surcharge de gouttière depuis un parent. `tone="inverse"` = carte sombre (surface, filet ET couleur de texte fixés par le ton, jamais hérités) : ne PAS repeindre une `Card` par une classe au call-site |
 | Accordion.astro | summary, name?, class? | **Canonique accordéon** : `<details>/<summary>` + slot, chevron Icon en bascule CSS, reduced-motion, focus visible. `name` partagé = exclusivité native. **Cible tactile garantie** : `min-h-11` (44px) + `items-center` sur le `<summary>`, donc au plancher craft-floor même sur un libellé d'une seule ligne. Ne PAS réécrire ce markup dans une section |
@@ -88,9 +87,9 @@ Un bloc inline non listé est réputé duplication à corriger.
 Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-même (pas d'exemple en /styleguide : ils exigent les données des collections). Libellés fixes tolérés dans ces blocs : « Adresse », « Horaires », « Avis », « Réserver à … » (SalonCard), « Téléphone », « Réserver », « Instagram » (FooterSalons).
 | Composant | Props | Rôle |
 | --- | --- | --- |
-| Hero.astro | hero, stats, bookingHref, phone | Titre + manuscrit, boutons RDV/appel, portrait en arche signé, bandeau de 4 chiffres. Isolé : identité visuelle en cours de recherche |
+| Hero.astro | hero, stats, bookingHref, phone | Titre (fin en italique or), boutons RDV/appel, portrait en arche avec étiquette, bandeau de 4 chiffres. Isolé : seul bloc à toucher pour changer le haut de page |
 | SalonCard.astro | salon | Carte d'un salon (photo, équipe, adresse, horaires dérivés, avis, bouton Planity) |
-| FounderBio.astro | founder | Portrait + bio de la fondatrice, ligne manuscrite, puces |
+| FounderBio.astro | founder | Portrait + bio de la fondatrice, puces |
 | NewClient.astro | block | Encart « Nouvelle cliente » sur fond doux |
 | SalonGallery.astro | salon, first? | Galerie d'un salon : mosaïque 4 colonnes (big/wide) en bureau, carrousel aimanté sur mobile (0 JS) |
 | InstagramBand.astro | block, accounts | Bandeau sombre vers les comptes Instagram |

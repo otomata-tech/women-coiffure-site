@@ -1,17 +1,15 @@
 ---
 // Sur-titre en capitales espacées au-dessus d'un titre (« Réservation 24h/24 »),
-// en serif. `tone` = surface qui le porte : encre sur fond clair, clair sur
-// bande sombre.
+// en Manrope comme dans la maquette de Nathalie. `tone` = surface qui le porte :
+// or sur fond clair, champagne sur bande sombre.
 interface Props {
   tone?: 'default' | 'inverse';
   class?: string;
 }
 const { tone = 'default', class: cls = '' } = Astro.props;
-const color = tone === 'inverse' ? 'text-inverse-fg' : 'text-fg';
+const color = tone === 'inverse' ? 'text-champagne' : 'text-accent';
 ---
 
-<span
-  class={`block font-display text-[.85rem] font-semibold tracking-[.12em] uppercase lining-nums xs:text-[.95rem] xs:tracking-[.2em] ${color} ${cls}`}
->
+<span class={`block text-[.72rem] font-bold tracking-[.22em] uppercase ${color} ${cls}`}>
   <slot />
 </span>

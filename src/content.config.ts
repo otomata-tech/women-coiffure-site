@@ -170,13 +170,12 @@ const accueil = defineCollection({
       hero: z.object({
         eyebrow: z.string(),
         title: z.string(),
-        titleEmphasis: z.string(), // fin du titre, en écriture manuscrite rose
+        titleEmphasis: z.string(), // fin du titre, en italique or
         lead: z.string(),
         ctaLabel: z.string(), // bouton vers les salons
         portrait: image(), // photo carrée, recadrée en arche
         portraitAlt: z.string(),
-        signature: z.string(), // étiquette manuscrite posée sur la photo
-        caption: z.string(), // ligne sous la signature
+        caption: z.string(), // étiquette posée sur la photo
       }),
       stats: z.array(z.object({ value: z.string(), label: z.string() })).length(4),
       salons: z.object({ ...titreDeBloc, intro: z.string(), teamNote: z.string() }),
@@ -185,13 +184,11 @@ const accueil = defineCollection({
         name: z.string(),
         photo: image(),
         photoAlt: z.string(),
-        script: z.string(), // ligne manuscrite sous le prénom
         bio: z.array(z.string()).min(1), // un élément = un paragraphe
         facts: z.array(z.string()),
       }),
       newClient: z.object({ ...titreDeBloc, text: z.string(), cta: lien }),
       visit: z.object({ ...titreDeBloc, intro: z.string() }),
-      // Bandeau Instagram : son sur-titre s'écrit à la main (rose).
       instagram: z.object({ ...titreDeBloc, text: z.string() }),
       news: z.object({ ...titreDeBloc, intro: z.string() }),
       shop: z.object({ ...titreDeBloc, text: z.string(), cta: lien }),

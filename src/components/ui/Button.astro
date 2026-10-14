@@ -1,8 +1,8 @@
 ---
 interface Props {
   href?: string;
-  /** primary = noir plein ; outline = contour (rempli au survol) ; accent = plein rose. */
-  variant?: 'primary' | 'outline' | 'accent';
+  /** primary = noir plein ; outline = contour (rempli au survol) ; champagne = plein champagne (sur bande sombre). */
+  variant?: 'primary' | 'outline' | 'champagne';
   /** Surface qui PORTE le bouton : `inverse` = bande sombre (tokens --color-inverse*). */
   tone?: 'default' | 'inverse';
   /** bar = bouton étiré de la barre fixe mobile (padding latéral réduit). */
@@ -20,7 +20,7 @@ const {
 } = Astro.props;
 
 // Pilule de la charte : contour 1,5px, léger soulèvement au survol (coupé si
-// l'utilisateur réduit les animations). Focus : anneau rose global (global.css).
+// l'utilisateur réduit les animations). Focus : anneau or global (global.css).
 const base =
   'inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full border-[1.5px] font-bold transition duration-150 hover:-translate-y-0.5 disabled:opacity-50 motion-reduce:transition-none motion-reduce:hover:translate-y-0';
 
@@ -33,19 +33,19 @@ const sizes = {
 // Ratios (WCAG, seuil 4,5:1 pour le libellé) :
 //   primary        inverse-fg / inverse 17,1:1
 //   outline        inverse / bg 19,7:1 ; au survol inverse-fg / inverse
-//   accent         accent-fg / accent 5,8:1
+//   champagne      inverse / champagne 8,75:1
 //   inverse/outline inverse-fg / inverse 17,1:1
 const styles = {
   default: {
     primary: 'border-inverse bg-inverse text-inverse-fg',
     outline: 'border-inverse bg-transparent text-inverse hover:bg-inverse hover:text-inverse-fg',
-    accent: 'border-accent bg-accent text-accent-fg',
+    champagne: 'border-champagne bg-champagne text-inverse',
   },
   inverse: {
     primary: 'border-inverse-fg bg-inverse-fg text-inverse',
     outline:
       'border-inverse-fg bg-transparent text-inverse-fg hover:bg-inverse-fg hover:text-inverse',
-    accent: 'border-accent bg-accent text-accent-fg',
+    champagne: 'border-champagne bg-champagne text-inverse',
   },
 } as const;
 
