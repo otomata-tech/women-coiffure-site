@@ -85,7 +85,7 @@
 
 :root {
   /* Hauteur de l'en-tête collant (HeaderBrand), reprise par scroll-padding. */
-  --header-h: 76px;
+  --header-h: 80px;
 }
 
 html {
