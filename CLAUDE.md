@@ -50,7 +50,17 @@ La session écrit elle-même, quel que soit son modèle ; elle délègue quand u
 - **Un sous-agent reçoit la méthode, pas seulement la tâche** : mode/échelle annoncés, conventions .claude/conventions/ routées à charger, critères de succès, interdiction de commiter, **interdiction de trancher un arbitrage** (il s'arrête et remonte les options à la session principale, qui pose la question via `AskUserQuestion`), **interdiction de tuer ou de modifier un processus, un fichier ou un dépôt qu'il n'a pas lancé ou qui est hors de son périmètre** (un `Stop-Process chrome.exe` global ferme le navigateur de l'utilisateur ; on filtre sur le processus qu'on a soi-même créé, ou on s'arrête et on remonte). Ces trois interdictions figurent dans le prompt de chaque sous-agent. Le commit reste à la session principale, via `/commit-push`.
 
 ## Projet
-<!-- Nom + description du site à remplir au bootstrap -->
+**WOMEN Coiffure** : site vitrine d'une page des trois salons de coiffure mixte de Nathalie Laporte dans le Var (Hyères, Carqueiranne, La Londe-les-Maures). Éditrice : Nathalie, via Claude Code en mots courants. Réservation : Planity (liens sortants, aucun formulaire sur le site).
+- **Où vit chaque contenu** (un fichier de contenu à toucher, jamais un composant) :
+  - réglages communs (nom, téléphone `contact.phone` en +33…, phrase « Un seul numéro… », menu, bouton « Prendre RDV », Instagram, phrase du pied de page, fondatrice du JSON-LD) → `src/content/settings/site.json` ;
+  - un salon (nom, équipe et spécialités, adresse, lien Maps, horaires, notes et nombres d'avis, lien Planity, photo de carte, galerie) → `src/content/salons/<salon>.md`, photos dans `src/content/salons/<salon>/` ;
+  - une actualité → un fichier `src/content/actus/<slug>.md` (titre, `date` AAAA-MM-JJ ou AAAA-MM, `tag`, lien optionnel ; le texte est le corps du fichier). Ajouter une actu = créer un fichier ; triées de la plus récente à la plus ancienne ;
+  - textes et visuels de l'accueil (héros, chiffres clés, en-têtes de section, bio de la fondatrice — proposition à valider par Nathalie —, nouvelle cliente, bandeau Instagram, boutique) → `src/content/accueil/accueil.md`, photos à côté.
+- **Horaires** : saisis en plages (`openingHours` : jours, ouverture, fermeture) ; le texte affiché (« Du lundi au samedi, 9h–18h · fermé le mercredi ») et le JSON-LD en sont dérivés par `src/lib/horaires.ts`. Ne jamais écrire le texte des horaires à la main.
+- **Logo** : `src/assets/logo-noir.svg` (en-tête) et `logo-blanc.svg` (pied de page), référencés uniquement dans `src/lib/site.ts` ; copie `public/logo.svg` pour le JSON-LD. Le héros est isolé dans `src/components/home/Hero.astro` (identité visuelle en cours de recherche).
+- **URL provisoire** : `https://women-coiffure.oto.zone` (`astro.config.mjs`), domaine définitif à choisir.
+- **Hébergement** : statique chez Scaleway (ADR 0002) ; pas de Vercel, pas de `vercel.json`.
+- **Retirés du gabarit** : blog, RSS, page contact et formulaire, pages à propos / mentions légales / politique de confidentialité (à réécrire avec les vraies informations avant mise en ligne), landing d'exemple. Les collections `pages` et `landings` restent déclarées, vides.
 
 ## Stack
 Astro 5 (output: static, AUCUN adapter serveur) + TypeScript strict + Tailwind CSS 4 (via @tailwindcss/vite).
@@ -85,8 +95,8 @@ Deux tiers de texte :
 - Texte GLOBAL/partagé (nom du site, nav, footer, organisation, réseaux, FAQ globale) -> src/content/settings/site.json, édité directement dans le fichier, lu par src/lib/site.ts (SITE). NE JAMAIS dupliquer ce texte dans une page.
 - Config TECHNIQUE -> URL prod dans astro.config.mjs (`site:`, source unique) ; locale, logo, sameAs dans src/lib/site.ts. Dev uniquement.
 
-Où va chaque contenu :
-- Article de blog -> Markdown dans src/content/blog/ (collection blog). URL /blog/<slug>.
+Où va chaque contenu (socle ; les contenus propres à ce site sont listés au § Projet, qui prime) :
+- Article de blog -> pas de blog sur ce site (retiré) : une nouvelle se publie en actu (src/content/actus/).
 - Page éditoriale (à propos, mentions légales, FAQ, contact) -> Markdown dans src/content/pages/. URL racine /<slug>.
 - Landing page -> MDX dans src/content/landings/ : frontmatter structuré (hero/sections/schema) + corps MDX. URL racine /<slug>. Exception : si design vraiment unique, page .astro bespoke dans src/pages/.
 - Archétype répété (cas clients, fiches produit/capteurs, secteurs…) -> NOUVELLE collection dédiée (schéma Zod + une route templatisée). Voir règle absolue 9.

@@ -1,11 +1,9 @@
-# Sitemap (exemple du template)
+# Sitemap — WOMEN Coiffure
 
 | Page | Type | URL | Objectif | CTA | Intention SEO |
 | --- | --- | --- | --- | --- | --- |
-| Accueil | home (.astro) | / | Présenter + router | Voir le blog | marque |
-| Blog | blog-index | /blog | Lister les articles | — | "blog <thème>" |
-| Premier article | article (md) | /blog/premier-article | Exemple de structure | — | "structure article blog" |
-| À propos | page (md) | /a-propos | Présenter l org | — | "à propos <marque>" |
-| Mentions légales | page (md) | /mentions-legales | Légal | — | noindex |
-| Contact | bespoke (.astro) | /contact | Recevoir des demandes | Envoyer | "contact <marque>" |
-| Audit énergétique | landing (mdx) | /audit-energetique | Conversion service | Demander un audit | "audit énergétique PME" |
+| Accueil | home (.astro, contenu dans accueil.md + salons + actus) | / | Faire réserver dans le bon salon | Prendre RDV (Planity), Appeler | « coiffeur Hyères / Carqueiranne / La Londe-les-Maures » |
+| 404 | bespoke (.astro) | /404 | Rattraper une URL morte | Retour à l'accueil | noindex |
+| Styleguide | outil (.astro) | /styleguide | Galerie des composants | — | noindex |
+
+À venir (non tranché) : mentions légales (obligatoires avant mise en ligne).

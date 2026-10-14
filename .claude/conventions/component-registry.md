@@ -17,7 +17,10 @@ composant OU d'écrire du markup de section. Tout nouveau composant/variante →
 | --- | --- | --- |
 | Container.astro | class?, prose? | Largeur max + padding (prose = colonne de lecture) |
 | Section.astro | class? | Espacement vertical de section |
-| Button.astro | href?, variant(primary/outline)?, tone(default/inverse)?, type(button/submit)?, class? | Bouton/lien (type pour usage formulaire ; tone = surface qui le porte) |
+| Button.astro | href?, variant(primary/outline/accent)?, tone(default/inverse)?, size(md/sm/bar)?, type(button/submit)?, class? | Bouton pilule/lien (type pour usage formulaire ; tone = surface qui le porte ; `bar` = bouton étiré de la barre mobile). Un `href` en http(s) s'ouvre dans un nouvel onglet |
+| Eyebrow.astro | tone(default/inverse)?, class? | Sur-titre serif en capitales espacées au-dessus d'un titre |
+| Script.astro | as(span/p)?, class? | Accent manuscrit rose (Sacramento) ; taille au call-site |
+| SectionHead.astro | eyebrow, title + slot (chapeau) | En-tête de section : Eyebrow + H2 + chapeau |
 | Card.astro | padding(default/none)?, tone(default/inverse)?, class? | **Canonique surface de carte** : fond + bordure + radius. `padding="none"` = contenu bord à bord (rogné au radius), pas de surcharge de gouttière depuis un parent. `tone="inverse"` = carte sombre (surface, filet ET couleur de texte fixés par le ton, jamais hérités) : ne PAS repeindre une `Card` par une classe au call-site |
 | Accordion.astro | summary, name?, class? | **Canonique accordéon** : `<details>/<summary>` + slot, chevron Icon en bascule CSS, reduced-motion, focus visible. `name` partagé = exclusivité native. **Cible tactile garantie** : `min-h-11` (44px) + `items-center` sur le `<summary>`, donc au plancher craft-floor même sur un libellé d'une seule ligne. Ne PAS réécrire ce markup dans une section |
 | Badge.astro | tone(accent/neutral/inverse)?, class? | Pilule de kicker (sur-titre court, étiquette de section). Slot libre |
@@ -56,8 +59,10 @@ rendre une variante chrome depuis une page.
 
 | Type (discriminant) | Composant | Rôle |
 | --- | --- | --- |
-| nav.header-simple (chrome) | nav/HeaderSimple.astro | Header : marque + nav principale (brand, nav[]) |
-| nav.footer-simple (chrome) | nav/FooterSimple.astro | Footer : copyright + liens de service (organizationName, links[]) |
+| nav.header-simple (chrome) | nav/HeaderSimple.astro | Header : marque + nav principale (brand, nav[]) — non utilisé sur ce site |
+| nav.footer-simple (chrome) | nav/FooterSimple.astro | Footer : copyright + liens de service (organizationName, links[]) — non utilisé sur ce site |
+| nav.header-brand (chrome, **actif**) | nav/HeaderBrand.astro | En-tête collant flouté : lien d'évitement, logo, nav (masquée < md), bouton RDV (brand, logo, nav[], cta) |
+| nav.footer-salons (chrome, **actif**) | nav/FooterSalons.astro | Pied sombre en colonnes (logo, phrase, téléphone, réservation par salon, Instagram) + barre fixe mobile Prendre RDV / Appeler |
 | offer.features-grid | offer/FeaturesGrid.astro | Grille de features en Card (3 colonnes) |
 | proof.testimonials-grid | proof/TestimonialsGrid.astro | Témoignages en figure/blockquote (2 colonnes) |
 | content.faq-accordion | content/FaqAccordion.astro | FAQ en colonne de lecture (réutilise Faq.astro) |
@@ -77,7 +82,20 @@ Chaque bloc resté en markup inline (hors composant) est listé ici avec sa rais
 Un bloc inline non listé est réputé duplication à corriger.
 | Page | Bloc | Raison |
 | --- | --- | --- |
-| index.astro | hero + grille d'articles | design unique de la home (règle DRY : bespoke réservé à l'unique) |
+| index.astro | assemblage des blocs home/ + en-tête de la section salons (lien téléphone) | design unique de la home ; aucun texte propre, tout vient de accueil.md, salons, actus, site.json |
+
+## Home (src/components/home/)
+Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-même (pas d'exemple en /styleguide : ils exigent les données des collections). Libellés fixes tolérés dans ces blocs : « Adresse », « Horaires », « Avis », « Réserver à … » (SalonCard), « Téléphone », « Réserver », « Instagram » (FooterSalons).
+| Composant | Props | Rôle |
+| --- | --- | --- |
+| Hero.astro | hero, stats, bookingHref, phone | Titre + manuscrit, boutons RDV/appel, portrait en arche signé, bandeau de 4 chiffres. Isolé : identité visuelle en cours de recherche |
+| SalonCard.astro | salon | Carte d'un salon (photo, équipe, adresse, horaires dérivés, avis, bouton Planity) |
+| FounderBio.astro | founder | Portrait + bio de la fondatrice, ligne manuscrite, puces |
+| NewClient.astro | block | Encart « Nouvelle cliente » sur fond doux |
+| SalonGallery.astro | salon, first? | Galerie d'un salon : mosaïque 4 colonnes (big/wide) en bureau, carrousel aimanté sur mobile (0 JS) |
+| InstagramBand.astro | block, accounts | Bandeau sombre vers les comptes Instagram |
+| NewsList.astro | actus | Grille des actualités (date, étiquette, titre, corps Markdown, lien) |
+| ShopBlock.astro | block | Bloc boutique click & collect sur bande sombre |
 
 ## Doublons & consolidation (roadmap)
 Dette de duplication tracée ici : datée, priorisée valeur/risque, avec fait / reste à faire.

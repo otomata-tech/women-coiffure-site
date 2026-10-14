@@ -1,7 +1,8 @@
-# Content model (template)
+# Content model — WOMEN Coiffure
 Source de vérité : src/content.config.ts.
-- blog (md) : title, description, pubDate, updatedDate?, author, category?, tags[], topics[], heroImage?+heroImageAlt (alt requis si image), tldr?, faq?, draft.
-- pages (md) : title, description, updatedDate?, tldr?, faq?.
-- landings (mdx) : title, description, updatedDate?, tldr?, topics[], hero{... image?+imageAlt}, sections[features|proof|faq|cta], schema{Service|Product}.
-- settings/site.json : texte global (name, nav, organizationName, social, faq) — validé par Zod dans src/lib/site.ts.
-Règles : title<=60, description 140-160, tldr 1-2 phrases, faq si pertinent, bumper updatedDate (dateModified JSON-LD + lastmod sitemap).
+- salons (md, frontmatter seul, src/content/salons/<salon>.md) : order, name, shortName, team[{name, specialty}], address{streetAddress, postalCode, addressLocality}, mapsUrl, openingHours[{days[lundi…dimanche], opens, closes}], reviews{google, planity : {rating, count}}, bookingUrl (Planity), photo + photoAlt + photoPosition?, gallery[{image, alt, caption, size normal|big|wide, position?}]. Rendu : carte de réservation, galerie, lien du pied de page, llms.txt, nœud JSON-LD HairSalon.
+- actus (md, src/content/actus/<slug>.md) : title, date (AAAA-MM-JJ ou AAAA-MM), tag, link{label, href}? ; corps = texte de l'actu. Tri : plus récente d'abord, un mois seul passe avant les jours du même mois, puis ordre alphabétique du fichier.
+- accueil (md, fichier unique src/content/accueil/accueil.md) : title, updatedDate, hero{eyebrow, title, titleEmphasis, lead, ctaLabel, portrait, portraitAlt, signature, caption}, stats[4]{value, label}, salons{eyebrow, title, intro, teamNote}, founder{eyebrow, name, photo, photoAlt, script, bio[], facts[]}, newClient{eyebrow, title, text, cta}, visit, instagram, news{eyebrow, title, intro}, shop{eyebrow, title, text, cta}.
+- pages (md) et landings (mdx) : collections du socle, vides sur ce site.
+- settings/site.json : name, shortName, description, whenToUse, tagline, nav, bookingCta, callLabel, organizationName, founder, contact{phone E.164, phoneNote, contactType}, social{twitter, linkedin, instagram[{handle, url}]}, faq — validé par Zod dans src/lib/site.ts.
+Règles : bumper updatedDate de accueil.md à chaque modification de l'accueil (lastmod sitemap = max(updatedDate, dernière actu)).

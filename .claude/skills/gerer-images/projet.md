@@ -1,0 +1,6 @@
+# Surcouche WOMEN Coiffure — images
+
+- Photo de carte d'un salon : `photo` (+ `photoAlt`, `photoPosition` pour le recadrage, ex. "center 40%") dans `src/content/salons/<salon>.md` ; fichier dans `src/content/salons/<salon>/`.
+- Galerie d'un salon : liste `gallery` de la même fiche (`image`, `alt`, `caption` = légende affichée, `size` normal / big (grande case) / wide (case large), `position`). L'ordre de la liste est l'ordre affiché.
+- Portrait du haut de page (`hero.portrait`, carré, recadré en arche) et portrait de la bio (`founder.photo`) : `src/content/accueil/accueil.md`, fichiers à côté.
+- Logo : `src/assets/logo-noir.svg` (en-tête) et `logo-blanc.svg` (pied de page), référencés dans `src/lib/site.ts` seul ; remplacer aussi `public/logo.svg` (JSON-LD). Image de partage : `public/og-default.jpg` (1200×630). Icône d'onglet : `public/favicon.png`.

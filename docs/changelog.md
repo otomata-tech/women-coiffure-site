@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-14 — Site WOMEN Coiffure porté dans le socle
+- Accueil porté de la maquette de la mission nathalie (charte noir et blanc, accents manuscrits roses, logos SVG) : héros isolé (`home/Hero.astro`), salons, fondatrice, nouvelle cliente, galeries (carrousel mobile), Instagram, actualités, boutique ; chrome `nav.header-brand` + `nav.footer-salons` (barre fixe mobile).
+- Contenu éditable : collections `salons`, `actus`, `accueil` ; `site.json` étendu (téléphone, Instagram, bouton RDV, fondatrice). Horaires saisis en plages, texte et JSON-LD dérivés (`lib/horaires.ts`). JSON-LD : un HairSalon par salon.
+- Retirés : blog, RSS, contact, pages et landing d'exemple, alias /about et /privacy, `vercel.json` (ADR 0002, hébergement Scaleway).
+- Surcouches `projet.md` des skills d'intention : comprendre-demande, editer-page, editer-global, creer-page, integrer-article, gerer-images.
+
 ## 2026-09-18 — Skills d'intention pour un éditeur novice, branche unique `main` = site public
 Demande JB : qu'un novice sur Claude Code desktop gère le site en mots courants. Modèle : les skills de website-my, rendus génériques. Les sites dérivés les héritent au tirage du remote `socle`, puis posent leur surcouche.
 - **13 skills d'intention** (`.claude/skills/`) : `comprendre-demande` (point d'entrée, table de routage, hors périmètre), `editer-page`, `editer-global`, `integrer-article`, `creer-page`, `gerer-images`, `optimiser-seo`, `renommer-rediriger`, `modifier-design`, `verifier`, `publier`, `statut-mise-en-ligne`, `annuler-modification`. Même gabarit pour tous : traduire la demande, faire, garde-fous, rendre compte, hors périmètre. Ils citent les règles (CLAUDE.md, conventions) sans les recopier.
