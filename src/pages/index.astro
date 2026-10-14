@@ -42,7 +42,7 @@ const meta = { title: page.title, description: SITE.description };
     <Container>
       <SectionHead eyebrow={page.salons.eyebrow} title={page.salons.title}>
         {page.salons.intro}{' '}
-        {SITE.contact?.phoneNote} :
+        {SITE.contact?.phoneNote}{'\u00a0'}:
         <a class="link-line font-bold whitespace-nowrap text-fg tabular-nums" href={phone.href}
           >{phone.display}</a
         >
