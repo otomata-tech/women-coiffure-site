@@ -6,13 +6,13 @@ type ActuDate = Actu['data']['date'];
 // Une actu datée d'un mois seul (« Octobre 2026 ») couvre le mois entier : elle
 // passe avant les actus datées d'un jour du même mois. À date égale, ordre
 // alphabétique du nom de fichier.
-const sortKey = (d: ActuDate) => (d.precision === 'month' ? `${d.iso}-99` : d.iso);
+export const dateSortKey = (d: ActuDate) => (d.precision === 'month' ? `${d.iso}-99` : d.iso);
 
 /** Actus de la plus récente à la plus ancienne. */
 export async function getActus(): Promise<Actu[]> {
   return (await getCollection('actus')).sort(
     (a, b) =>
-      sortKey(b.data.date).localeCompare(sortKey(a.data.date)) || a.id.localeCompare(b.id),
+      dateSortKey(b.data.date).localeCompare(dateSortKey(a.data.date)) || a.id.localeCompare(b.id),
   );
 }
 

@@ -5,6 +5,7 @@ Le site est une seule page (l'accueil). Presque tout ce que Nathalie voit vient 
 | Ce qu'elle voit | Fichier | Skill |
 |---|---|---|
 | un salon : équipe, spécialités, adresse, horaires, notes et nombres d'avis, lien de réservation, photo, galerie | `src/content/salons/<hyeres / carqueiranne / la-londe-les-maures>.md` | `editer-page` (texte), `gerer-images` (photos) |
+| une réalisation avant/après (« Nos réalisations », masquée tant qu'il n'y en a aucune) | `src/content/realisations/<slug>.md`, photos dans `src/content/realisations/<slug>/` | `creer-page` (en ajouter une), `editer-page` |
 | une actualité (« Les nouvelles ») | `src/content/actus/<slug>.md` | `editer-page` ; en ajouter une : `creer-page` |
 | titre du haut, chiffres clés, bio de Nathalie, nouvelle cliente, mariages & événements, bandeau Instagram, boutique, en-têtes de section | `src/content/accueil/accueil.md` | `editer-page` |
 | téléphone, menu, bouton « Prendre RDV », comptes Instagram, phrase du pied de page | `src/content/settings/site.json` | `editer-global` |

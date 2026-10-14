@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { sectionSchema } from '@/lib/sections';
 
@@ -158,6 +158,23 @@ const actus = defineCollection({
   }),
 });
 
+// Une réalisation avant/après = un fichier ; le corps Markdown est le texte
+// court. Photos à côté du fichier. Section de l'accueil masquée tant que la
+// collection est vide.
+const realisations = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/realisations' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      date: dateActu, // AAAA-MM-JJ ou AAAA-MM, comme une actu
+      salon: reference('salons').optional(), // hyeres, carqueiranne, la-londe-les-maures
+      before: image(),
+      beforeAlt: z.string(),
+      after: image(),
+      afterAlt: z.string(),
+    }),
+});
+
 // Textes et visuels de la page d'accueil (fichier unique accueil.md).
 const titreDeBloc = { eyebrow: z.string(), title: z.string() };
 const lien = z.object({ label: z.string(), href: z.string() });
@@ -194,6 +211,7 @@ const accueil = defineCollection({
       newClient: z.object({ ...titreDeBloc, text: z.string(), cta: lien }),
       visit: z.object({ ...titreDeBloc, intro: z.string() }),
       // Section « Mariages & événements » (#evenementiel).
+      realisations: z.object({ ...titreDeBloc, intro: z.string() }),
       events: z
         .object({
           ...titreDeBloc,
@@ -225,4 +243,4 @@ const accueil = defineCollection({
     }),
 });
 
-export const collections = { pages, landings, salons, actus, accueil };
+export const collections = { pages, landings, salons, actus, realisations, accueil };

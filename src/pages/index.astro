@@ -10,12 +10,14 @@ import FounderBio from '@/components/home/FounderBio.astro';
 import NewClient from '@/components/home/NewClient.astro';
 import SalonGallery from '@/components/home/SalonGallery.astro';
 import EventsSection from '@/components/home/EventsSection.astro';
+import RealisationsList from '@/components/home/RealisationsList.astro';
 import InstagramBand from '@/components/home/InstagramBand.astro';
 import NewsList from '@/components/home/NewsList.astro';
 import ShopBlock from '@/components/home/ShopBlock.astro';
 import { SITE } from '@/lib/site';
 import { getSalons, salonJsonLd } from '@/lib/salons';
 import { getActus } from '@/lib/actus';
+import { getRealisations } from '@/lib/realisations';
 
 // Accueil : page sur mesure qui ASSEMBLE le contenu, sans texte propre.
 // Textes : src/content/accueil/accueil.md ; salons : src/content/salons/ ;
@@ -27,6 +29,7 @@ const page = accueil.data;
 const phone = SITE.phone;
 const salons = await getSalons();
 const actus = await getActus();
+const realisations = await getRealisations();
 const salonNodes = await Promise.all(salons.map(salonJsonLd));
 
 const meta = { title: page.title, description: SITE.description };
@@ -71,6 +74,19 @@ const meta = { title: page.title, description: SITE.description };
       {salons.map((salon, i) => <SalonGallery salon={salon} first={i === 0} />)}
     </Container>
   </Section>
+
+  {
+    realisations.length > 0 && (
+      <Section id="realisations" class="mt-18">
+        <Container>
+          <SectionHead eyebrow={page.realisations.eyebrow} title={page.realisations.title}>
+            {page.realisations.intro}
+          </SectionHead>
+          <RealisationsList items={realisations} />
+        </Container>
+      </Section>
+    )
+  }
 
   <Section id="evenementiel" class="mt-18">
     <Container>

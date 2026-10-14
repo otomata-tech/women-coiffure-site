@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import { formatActuDate } from '@/lib/actus';
+import type { Realisation } from '@/lib/realisations';
+
+// Réalisations avant/après : photos côte à côte, titre, salon et date, texte
+// court (corps Markdown). Grille en bureau, carrousel aimanté sur mobile (0 JS),
+// comme SalonGallery.
+interface Props {
+  items: { entry: Realisation; salonName?: string }[];
+}
+const cards = await Promise.all(
+  Astro.props.items.map(async (item) => ({ ...item, Content: (await render(item.entry)).Content })),
+);
+const label =
+  'absolute bottom-2.5 left-2.5 rounded-full bg-inverse/55 px-2.5 py-1 text-[.7rem] font-bold tracking-[.12em] text-inverse-fg uppercase';
+---
+
+<div
+  class="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 tab:grid-cols-3 [&::-webkit-scrollbar]:hidden"
+>
+  {
+    cards.map(({ entry, salonName, Content }) => (
+      <article class="flex min-w-0 flex-[0_0_85%] snap-center flex-col overflow-hidden rounded-card border border-border bg-surface">
+        <div class="grid grid-cols-2 gap-0.5 bg-border">
+          {[
+            { src: entry.data.before, alt: entry.data.beforeAlt, text: 'Avant' },
+            { src: entry.data.after, alt: entry.data.afterAlt, text: 'Après' },
+          ].map((photo) => (
+            <figure class="relative m-0">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                widths={[300, 600]}
+                sizes="(min-width: 860px) 180px, (min-width: 768px) 50vw, 45vw"
+                class="aspect-3/4 h-auto w-full object-cover"
+              />
+              <figcaption class={label}>{photo.text}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="grid gap-1.5 p-5">
+          <p class="m-0 text-[.74rem] font-bold tracking-[.14em] text-accent uppercase">
+            {salonName && `${salonName} · `}
+            <time datetime={entry.data.date.iso}>{formatActuDate(entry.data.date)}</time>
+          </p>
+          <h3 class="text-[1.5rem]">{entry.data.title}</h3>
+          <div class="text-[.93rem] text-muted [&_p]:m-0">
+            <Content />
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</div>

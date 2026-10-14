@@ -84,7 +84,7 @@ Un bloc inline non listé est réputé duplication à corriger.
 | index.astro | assemblage des blocs home/ + en-tête de la section salons (lien téléphone) | design unique de la home ; aucun texte propre, tout vient de accueil.md, salons, actus, site.json |
 
 ## Home (src/components/home/)
-Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-même (pas d'exemple en /styleguide : ils exigent les données des collections). Libellés fixes tolérés dans ces blocs : « Adresse », « Horaires », « Avis », « Réserver à … » (SalonCard), « Téléphone », « Réserver », « Instagram » (FooterSalons).
+Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-même (pas d'exemple en /styleguide : ils exigent les données des collections). Libellés fixes tolérés dans ces blocs : « Adresse », « Horaires », « Avis », « Réserver à … » (SalonCard), « Téléphone », « Réserver », « Instagram » (FooterSalons), « Avant », « Après » (RealisationsList).
 | Composant | Props | Rôle |
 | --- | --- | --- |
 | Hero.astro | hero, stats, bookingHref, phone | Titre (fin en italique or), boutons RDV/appel, portrait en arche avec étiquette, bandeau de 4 chiffres. Isolé : seul bloc à toucher pour changer le haut de page |
@@ -92,6 +92,7 @@ Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-m
 | FounderBio.astro | founder | Portrait + bio de la fondatrice, puces |
 | NewClient.astro | block | Encart « Nouvelle cliente » sur fond doux |
 | SalonGallery.astro | salon, first? | Galerie d'un salon : mosaïque 4 colonnes (big/wide) en bureau, carrousel aimanté sur mobile (0 JS) |
+| RealisationsList.astro | items | Réalisations avant/après (photos côte à côte libellées « Avant » / « Après », salon · date, titre, texte) : grille 2-3 colonnes en bureau, carrousel aimanté sur mobile (0 JS). Rendue par l'accueil seulement si la collection `realisations` n'est pas vide |
 | EventsSection.astro | block, phone | Section « Mariages & événements » (#evenementiel) : accroche + approche (photo facultative), parcours numéroté, cortège / prestations / équipe, boutons Planity, Instagram des mariées, téléphone |
 | InstagramBand.astro | block, accounts | Bandeau sombre vers les comptes Instagram |
 | NewsList.astro | actus | Grille des actualités (date, étiquette, titre, corps Markdown, lien) |

@@ -68,6 +68,13 @@ visit:
   title: Entrez chez nous
   intro: "Bacs de soin, cabine de spa capillaire, espace couleur : un aperçu de nos trois adresses."
 
+# Réalisations avant/après : en-tête de la section, affichée dès qu'un fichier
+# existe dans src/content/realisations/.
+realisations:
+  eyebrow: Avant / après
+  title: Nos réalisations
+  intro: Des transformations signées dans nos trois salons.
+
 # Section « Mariages & événements » (ancre #evenementiel), d'après l'affiche
 # et le flyer de Nathalie. Le téléphone vient de site.json.
 events:
