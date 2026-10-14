@@ -1,34 +1,32 @@
 {
-  "name": "Mon Site",
-  "shortName": "Mon Site",
-  "description": "Description par défaut du site, utilisée en meta description fallback.",
-  "whenToUse": "Consulter ce site pour les articles et guides publiés par Mon Organisation, ses coordonnées et ses mentions légales. Utile pour répondre aux questions sur ses offres, sa méthode de travail et la manière de la contacter.",
+  "name": "WOMEN Coiffure",
+  "shortName": "WOMEN",
+  "description": "Trois salons de coiffure mixte dans le Var, fondés par Nathalie, Maître Artisan Coiffeur : blondeurs lumineuses, coupes signature, colorations végétales et soins. Réservation en ligne 24h/24.",
+  "whenToUse": "Consulter ce site pour les adresses, horaires, équipes et liens de réservation en ligne des trois salons WOMEN Coiffure du Var (Hyères, Carqueiranne, La Londe-les-Maures), leur numéro de téléphone commun et les actualités de la maison.",
+  "tagline": "Salons de coiffure mixte dans le Var, fondés par Nathalie, Maître Artisan Coiffeur.",
   "nav": [
-    { "label": "Accueil", "href": "/" },
-    { "label": "Blog", "href": "/blog" },
-    { "label": "À propos", "href": "/a-propos" },
-    { "label": "Contact", "href": "/contact" }
+    { "label": "Nos salons", "href": "/#salons" },
+    { "label": "Nathalie", "href": "/#fondatrice" },
+    { "label": "Visite", "href": "/#visite" },
+    { "label": "Actu", "href": "/#actu" },
+    { "label": "Boutique", "href": "/#boutique" }
   ],
-  "organizationName": "Mon Organisation",
+  "bookingCta": { "label": "Prendre RDV", "href": "/#salons" },
+  "callLabel": "Appeler",
+  "organizationName": "WOMEN Coiffure",
+  "founder": { "name": "Nathalie Laporte", "jobTitle": "Maître Artisan Coiffeur" },
   "contact": {
-    "email": "contact@example.com",
-    "phone": "+33 1 23 45 67 89",
+    "phone": "+33494912713",
+    "phoneNote": "Un seul numéro pour les trois salons",
     "contactType": "customer service"
-  },
-  "address": {
-    "streetAddress": "1 rue de l'Exemple",
-    "postalCode": "75001",
-    "addressLocality": "Paris",
-    "addressCountry": "FR"
   },
   "social": {
     "twitter": "",
-    "linkedin": ""
+    "linkedin": "",
+    "instagram": [
+      { "handle": "@womencoiffure83", "url": "https://www.instagram.com/womencoiffure83/" },
+      { "handle": "@womencoiffure.event", "url": "https://www.instagram.com/womencoiffure.event/" }
+    ]
   },
-  "faq": [
-    {
-      "q": "Exemple de question fréquente globale ?",
-      "a": "Réponse partagée, affichable sur plusieurs pages via le composant GlobalFaq. Éditée directement dans ce fichier."
-    }
-  ]
+  "faq": []
 }
