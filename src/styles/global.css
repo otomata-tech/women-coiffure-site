@@ -44,12 +44,12 @@
   --color-muted: #625b51;
   --color-border: #ece6db;
   --color-surface: #ffffff;
-  /* Rose soutenu : notes, dates, boutons roses. 5,9:1 sur bg, 5,6:1 sous
+  /* Rose soutenu : notes, dates, boutons roses. 5,75:1 sur bg, 5,8:1 sous
      texte blanc. */
   --color-accent: #b8287a;
   --color-accent-fg: #ffffff;
   /* Rose vif : écriture manuscrite (grands corps), filets de liens, focus.
-     4,0:1 sur bg : jamais pour du texte courant. */
+     4,1:1 sur bg : jamais pour du texte courant. */
   --color-pink: #d84095;
   /* Fond doux des blocs (spécialités, « Nouvelle cliente », étiquettes). */
   --color-soft: #f4f1ec;
