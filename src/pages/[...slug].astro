@@ -12,14 +12,14 @@ import { SITE } from '@/lib/site';
 // Le catch-all racine agrège deux collections à URL racine :
 //  - landings (MDX, orientées conversion : hero + sections structurées)
 //  - pages éditoriales (MD : à propos, mentions légales…)
-// Les routes plus spécifiques (/blog/*, /index) gagnent sur ce catch-all.
+// Les routes plus spécifiques (/index, /404, /styleguide) gagnent sur ce catch-all.
 export async function getStaticPaths() {
   const landings = await getCollection('landings');
   const pages = await getCollection('pages');
 
   // Garde anti-collision : un slug réservé (route .astro existante) ou présent
   // dans les deux collections serait silencieusement masqué. On casse le build.
-  const reserved = new Set(['blog', 'contact', '404', 'index']);
+  const reserved = new Set(['404', 'index', 'styleguide']);
   const seen = new Set<string>();
   for (const id of [...landings, ...pages].map((e) => e.id)) {
     if (reserved.has(id))
