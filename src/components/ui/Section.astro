@@ -1,10 +1,12 @@
 ---
 interface Props {
+  id?: string;
   class?: string;
 }
-const { class: cls = '' } = Astro.props;
+const { id, class: cls = '' } = Astro.props;
+// Rythme de la charte : 72px de part et d'autre, filet en tête de section.
 ---
 
-<section class={`py-12 sm:py-16 ${cls}`}>
+<section id={id} class={`border-t border-border py-18 ${cls}`}>
   <slot />
 </section>

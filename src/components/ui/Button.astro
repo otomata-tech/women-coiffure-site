@@ -1,9 +1,12 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'primary' | 'outline';
+  /** primary = noir plein ; outline = contour (rempli au survol) ; champagne = plein champagne. */
+  variant?: 'primary' | 'outline' | 'champagne';
   /** Surface qui PORTE le bouton : `inverse` = bande sombre (tokens --color-inverse*). */
   tone?: 'default' | 'inverse';
+  /** bar = bouton étiré de la barre fixe mobile (padding latéral réduit). */
+  size?: 'md' | 'sm' | 'bar';
   type?: 'button' | 'submit';
   class?: string;
 }
@@ -11,43 +14,58 @@ const {
   href,
   variant = 'primary',
   tone = 'default',
+  size = 'md',
   type = 'button',
   class: cls = '',
 } = Astro.props;
 
-// Anneau de focus explicite (thématisé, pas celui de l'UA) : craft-floor § États.
-// L'offset pose le gap sur la surface, d'où un anneau différent par `tone`.
+// Pilule de la charte : contour 1,5px, léger soulèvement au survol (coupé si
+// l'utilisateur réduit les animations). Focus : anneau doré global (global.css).
 const base =
-  'inline-flex items-center justify-center rounded px-5 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2';
+  'inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full border-[1.5px] font-bold transition duration-150 hover:-translate-y-0.5 disabled:opacity-50 motion-reduce:transition-none motion-reduce:hover:translate-y-0';
 
-// Ratios mesurés (OKLCH → sRGB → WCAG), seuil 3:1 pour la bordure et l'anneau
-// (composant d'interface), 4.5:1 pour le libellé :
-//   default/outline  bordure muted/bg 5.35:1 (border/bg ne donnait que 1.23:1),
-//                    libellé fg/bg 17.59:1, anneau accent/bg 4.72:1
-//   inverse/outline  bordure inverse-muted/inverse 7.58:1, libellé 17.25:1
-//   inverse/primary  surface accent/inverse 3.88:1, anneau inverse-fg 17.25:1
+const sizes = {
+  md: 'px-6.5 py-3.75 text-[.95rem]',
+  sm: 'px-4.5 py-2.5 text-[.85rem]',
+  bar: 'flex-1 px-2.5 py-3.5 text-[.95rem]',
+} as const;
+
+// Ratios (WCAG, seuil 4,5:1 pour le libellé) :
+//   primary        inverse-fg / inverse 17,4:1
+//   outline        inverse / bg 19,6:1 ; au survol inverse-fg / inverse
+//   champagne      inverse / champagne 8,6:1
+//   inverse/outline inverse-fg / inverse 17,4:1
 const styles = {
   default: {
-    primary: 'bg-accent text-accent-fg hover:opacity-90 focus-visible:outline-accent',
-    outline: 'border border-muted text-fg hover:bg-surface focus-visible:outline-accent',
+    primary: 'border-inverse bg-inverse text-inverse-fg',
+    outline: 'border-inverse bg-transparent text-inverse hover:bg-inverse hover:text-inverse-fg',
+    champagne: 'border-champagne bg-champagne text-inverse',
   },
   inverse: {
-    primary: 'bg-accent text-accent-fg hover:opacity-90 focus-visible:outline-inverse-fg',
+    primary: 'border-inverse-fg bg-inverse-fg text-inverse',
     outline:
-      'border border-inverse-muted text-inverse-fg hover:bg-inverse-fg/10 focus-visible:outline-inverse-fg',
+      'border-inverse-fg bg-transparent text-inverse-fg hover:bg-inverse-fg hover:text-inverse',
+    champagne: 'border-champagne bg-champagne text-inverse',
   },
 } as const;
 
-const style = styles[tone][variant];
+// Lien vers un autre site (Planity, Instagram) : ouvert dans un nouvel onglet.
+const external = href?.startsWith('http') ?? false;
+const classes = `${base} ${sizes[size]} ${styles[tone][variant]} ${cls}`;
 ---
 
 {
   href ? (
-    <a href={href} class={`${base} ${style} ${cls}`}>
+    <a
+      href={href}
+      class={classes}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener' : undefined}
+    >
       <slot />
     </a>
   ) : (
-    <button type={type} class={`${base} ${style} ${cls}`}>
+    <button type={type} class={classes}>
       <slot />
     </button>
   )

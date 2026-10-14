@@ -4,9 +4,9 @@ interface Props {
   prose?: boolean;
 }
 const { class: cls = '', prose = false } = Astro.props;
-const width = prose ? 'max-w-reading' : 'max-w-5xl';
+const width = prose ? 'max-w-reading' : 'max-w-site';
 ---
 
-<div class={`mx-auto w-full px-4 ${width} ${cls}`}>
+<div class={`mx-auto w-full px-5 ${width} ${cls}`}>
   <slot />
 </div>

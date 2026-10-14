@@ -1,0 +1,14 @@
+---
+// Sur-titre en capitales espacées au-dessus d'un titre (« Réservation 24h/24 »).
+// `tone` = surface qui le porte : doré sur fond clair, champagne sur bande sombre.
+interface Props {
+  tone?: 'default' | 'inverse';
+  class?: string;
+}
+const { tone = 'default', class: cls = '' } = Astro.props;
+const color = tone === 'inverse' ? 'text-champagne' : 'text-accent';
+---
+
+<span class={`block text-[.72rem] font-bold uppercase tracking-[.22em] ${color} ${cls}`}>
+  <slot />
+</span>

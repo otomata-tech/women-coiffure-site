@@ -1,58 +1,139 @@
 @import 'tailwindcss';
 
 /*
-  Design tokens — volontairement neutres et légers.
-  Ils seront remplacés par le design system définitif plus tard.
-  Tailwind 4 : configuration CSS-first via @theme (pas de tailwind.config.js).
+  Polices auto-hébergées (public/fonts/, préchargées par BaseHead) : Cormorant
+  Garamond pour les titres, Manrope pour le texte.
+*/
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/manrope-normal.woff2') format('woff2');
+}
+
+/*
+  Charte WOMEN Coiffure, alignée sur le logo : noir profond, champagne, blanc
+  cassé (docs/design/system.md). Tailwind 4 : configuration CSS-first via @theme.
 */
 @theme {
-  --color-bg: oklch(99% 0 0);
-  --color-fg: oklch(20% 0.01 260);
-  --color-muted: oklch(52% 0.01 260);
-  --color-border: oklch(92% 0.005 260);
-  --color-surface: oklch(97% 0.003 260);
-  --color-accent: oklch(55% 0.15 250);
-  --color-accent-fg: oklch(99% 0 0);
+  --color-bg: #fffefb;
+  --color-fg: #151311;
+  --color-muted: #625b51;
+  --color-border: #ece6db;
+  --color-surface: #ffffff;
+  /* Doré : sur-titres, notes, anneau de focus. 5,3:1 sur bg. */
+  --color-accent: #7a6a49;
+  --color-accent-fg: #fffefb;
+  /* Champagne : boutons et filets de liens. Décoratif sur fond clair (2,2:1),
+     jamais porteur de texte clair. */
+  --color-champagne: #b9ab90;
+  /* Fond doux des blocs (spécialités, « Nouvelle cliente », étiquettes). */
+  --color-soft: #f3ede2;
 
-  /* Bande sombre (section posée en inversion sur une page claire). Voile de
-     lisibilité sur un média = bg-inverse/50, pas de token overlay séparé. */
-  --color-inverse: oklch(18% 0.02 265);
-  --color-inverse-fg: oklch(97% 0 0);
-  --color-inverse-muted: oklch(72% 0.02 265);
+  /* Bande sombre (bandeau Instagram, boutique, pied de page, barre mobile). */
+  --color-inverse: #0b0a09;
+  --color-inverse-fg: #f2eee7;
+  --color-inverse-muted: #b8af9f;
+  --color-inverse-border: #2c2824;
 
-  /* États (message de succès / d'erreur d'un formulaire). DEUX valeurs par état,
-     pas une : aucune couleur unique ne peut tenir 4,5:1 à la fois sur `bg`
-     (Y=0,970 → Y du texte ≤ 0,177) et sur `inverse` (Y=0,006 → Y du texte
-     ≥ 0,201) — les deux domaines sont disjoints. Le suffixe `-on-inverse` dit
-     donc la SURFACE qui porte le texte, comme `tone="inverse"` des composants.
-     Ratios mesurés (OKLCH → sRGB → WCAG), seuil 4,5:1 :
-       error / bg 5,90:1 · success / bg 5,51:1
-       error-on-inverse / inverse 6,60:1 · success-on-inverse / inverse 7,49:1 */
+  /* États (message de succès / d'erreur d'un formulaire). DEUX valeurs par état :
+     le suffixe `-on-inverse` dit la SURFACE qui porte le texte. */
   --color-error: oklch(52% 0.19 27);
   --color-success: oklch(50% 0.12 150);
   --color-error-on-inverse: oklch(70% 0.15 27);
   --color-success-on-inverse: oklch(70% 0.15 150);
 
-  --font-sans:
-    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
+  --font-sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Cormorant Garamond', 'Didot', 'Times New Roman', serif;
 
   --radius: 0.5rem;
+  --radius-tile: 14px; /* vignettes de galerie */
+  --radius-card: 18px; /* cartes salon, chiffres clés */
+  --radius-panel: 22px; /* bannière, portrait */
   /* Colonne de lecture. Pas "--container-prose" : max-w-prose est un utilitaire
      statique de Tailwind (65ch) que le token n'écrase pas. */
   --container-reading: 42rem;
+  /* Boîte du site (Container) : 1120px gouttières comprises. */
+  --container-site: 70rem;
+
+  /* Points de rupture de la maquette : 560px (actus sur une colonne) et 860px
+     (héros et actus sur deux colonnes). md (768px) tient celui de 760px. */
+  --breakpoint-xs: 35rem;
+  --breakpoint-tab: 53.75rem;
+}
+
+:root {
+  /* Hauteur de l'en-tête collant (HeaderBrand), reprise par scroll-padding. */
+  --header-h: 64px;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Une ancre (#salons…) ne passe pas sous l'en-tête collant. */
+  scroll-padding-top: calc(var(--header-h) + 12px);
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--color-soft);
+    color: var(--color-fg);
+  }
+}
+
+/* Lien souligné d'un filet champagne (adresses, numéro, liens d'actu). */
+@utility link-line {
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-champagne);
+  transition: border-color 0.15s;
+  &:hover {
+    border-bottom-color: currentColor;
+  }
 }
 
 /* Styles de base du contenu Markdown rendu (.prose-content) */

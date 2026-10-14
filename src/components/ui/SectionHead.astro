@@ -1,0 +1,16 @@
+---
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+
+// En-tête de section : sur-titre, titre H2, chapeau (slot, texte libre).
+interface Props {
+  eyebrow: string;
+  title: string;
+}
+const { eyebrow, title } = Astro.props;
+---
+
+<div class="mb-9 grid max-w-160 gap-3">
+  <Eyebrow>{eyebrow}</Eyebrow>
+  <h2 class="text-[clamp(2.2rem,5vw,3.3rem)]">{title}</h2>
+  <p class="m-0 text-muted"><slot /></p>
+</div>
