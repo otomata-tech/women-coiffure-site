@@ -37,7 +37,7 @@ const meta = { title: page.title, description: SITE.description };
   <Section id="salons">
     <Container>
       <SectionHead eyebrow={page.salons.eyebrow} title={page.salons.title}>
-        {page.salons.intro}
+        {page.salons.intro}{' '}
         {SITE.contact?.phoneNote} :
         <a class="link-line font-bold whitespace-nowrap text-fg tabular-nums" href={phone.href}
           >{phone.display}</a
