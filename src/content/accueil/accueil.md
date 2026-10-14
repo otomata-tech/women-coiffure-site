@@ -6,13 +6,15 @@ title: Salons de coiffure à Hyères, Carqueiranne et La Londe-les-Maures
 updatedDate: 2026-10-14
 
 hero:
-  banner: ./banniere.webp
-  bannerAlt: WOMEN Coiffure mixte — Carqueiranne, La Londe, Hyères
-  eyebrow: Coiffure mixte · Var
+  eyebrow: Hyères · Carqueiranne · La Londe
   title: L'élégance se révèle
   titleEmphasis: dans chaque détail
-  lead: "Trois salons, une même exigence : blondeurs lumineuses, coupes signature, colorations végétales et rituels de soin. Réservez en ligne en quelques secondes."
+  lead: "Trois salons de coiffure mixte, une même exigence : blondeurs lumineuses, coupes signature, colorations végétales et rituels de soin. Réservez en ligne en quelques secondes."
   ctaLabel: Prendre rendez-vous
+  portrait: ./nathalie-ciseaux.webp
+  portraitAlt: Nathalie, fondatrice de WOMEN Coiffure, ciseaux à la main
+  signature: By Nath
+  caption: Nathalie, fondatrice · Maître Artisan Coiffeur
 
 # Les quatre chiffres à côté du titre.
 stats:
@@ -20,10 +22,10 @@ stats:
     label: près de 500 avis Google
   - value: 4,9 / 5
     label: plus de 400 avis Planity
-  - value: "2005"
-    label: Maître Artisan Coiffeur
-  - value: 3 salons
-    label: Hyères · Carqueiranne · La Londe
+  - value: Maître Artisan
+    label: depuis 2005
+  - value: Label
+    label: Salon Artemoda
 
 salons:
   eyebrow: Réservation 24h/24
@@ -35,8 +37,9 @@ salons:
 founder:
   eyebrow: La fondatrice
   name: Nathalie
-  photo: ./nathalie.webp
-  photoAlt: Nathalie, fondatrice de WOMEN Coiffure, ciseaux à la main en salon
+  photo: ./nathalie-bigoudis.webp
+  photoAlt: Portrait de Nathalie en noir et blanc, bigoudis dans les cheveux
+  script: Je suis coiffeuse et…
   # Proposition de texte, à valider par Nathalie.
   bio:
     - Maître Artisan Coiffeur depuis 2005, Nathalie a fondé WOMEN et en a fait trois salons à son image, à Hyères, Carqueiranne et La Londe-les-Maures.
@@ -45,6 +48,7 @@ founder:
     - Maître Artisan Coiffeur
     - Experte blondeur
     - Formatrice
+    - Label Artemoda
 
 newClient:
   eyebrow: Nouvelle cliente
@@ -60,7 +64,7 @@ visit:
   intro: "Bacs de soin, cabine de spa capillaire, espace couleur : un aperçu de nos trois adresses."
 
 instagram:
-  eyebrow: Suivez-nous
+  eyebrow: Suivez-nous…
   title: Nos réalisations au quotidien
   text: Avant/après, coupes, couleurs et coulisses des trois salons.
 

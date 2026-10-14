@@ -1,10 +1,11 @@
 import { z } from 'astro/zod';
 import settings from '@/content/settings/site.json';
 import { formatPhoneFr, telHref } from '@/lib/phone';
-// Logo affiché (en-tête, pied de page) : référencé ICI SEUL, les composants le
-// reçoivent par src/lib/chrome.ts. Changer de logo = remplacer ce fichier (et
-// public/logo.png, sa version pour le JSON-LD et les partages).
-import logoImage from '@/assets/logo.webp';
+// Logo affiché (en-tête : noir ; pied de page : blanc) : référencé ICI SEUL,
+// les composants le reçoivent par src/lib/chrome.ts. Changer de logo = remplacer
+// ces fichiers (et public/logo.svg, sa copie pour le JSON-LD).
+import logoDark from '@/assets/logo-noir.svg';
+import logoLight from '@/assets/logo-blanc.svg';
 
 // --- Validation du texte global (règle absolue 4 : tout contenu passe par Zod) --
 // site.json est parsé au build : un champ manquant ou mal typé casse le build.
@@ -71,7 +72,7 @@ const TECHNICAL = {
   // Couleur de la barre du navigateur mobile (= --color-inverse, global.css).
   themeColor: '#0B0A09',
   organization: {
-    logo: '/logo.png',
+    logo: '/logo.svg',
   },
 };
 
@@ -95,7 +96,7 @@ export const SITE = {
   lang: TECHNICAL.lang,
   defaultOgImage: TECHNICAL.defaultOgImage,
   themeColor: TECHNICAL.themeColor,
-  logo: logoImage,
+  logo: { onLight: logoDark, onDark: logoLight },
   tagline: SETTINGS.tagline,
   bookingCta: SETTINGS.bookingCta,
   callLabel: SETTINGS.callLabel,

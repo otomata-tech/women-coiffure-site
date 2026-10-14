@@ -13,7 +13,7 @@ import type { FooterSalonsSection } from '@/components/sections/nav/FooterSalons
 export const SITE_HEADER: HeaderBrandSection = {
   type: 'nav.header-brand',
   brand: SITE.name,
-  logo: SITE.logo,
+  logo: SITE.logo.onLight,
   nav: [...SITE.nav],
   cta: SITE.bookingCta,
 };
@@ -24,7 +24,7 @@ export async function getSiteFooter(): Promise<FooterSalonsSection> {
   return {
     type: 'nav.footer-salons',
     organizationName: SITE.organization.name,
-    logo: SITE.logo,
+    logo: SITE.logo.onDark,
     tagline: SITE.tagline,
     phone: { ...SITE.phone, note: SITE.contact?.phoneNote },
     booking: salons.map((s) => ({ label: s.data.name, href: s.data.bookingUrl })),
