@@ -3,27 +3,42 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Eyebrow from '@/components/ui/Eyebrow.astro';
 
-// Portrait et biographie de la fondatrice, étiquettes de qualités.
+// Portrait (fixé en bureau pendant la lecture) et biographie de la fondatrice :
+// premier paragraphe en chapeau, phrases `{ quote }` en citation, puis puces.
 interface Props {
   founder: CollectionEntry<'accueil'>['data']['founder'];
 }
 const { founder } = Astro.props;
+const [lead, ...paragraphs] = founder.bio;
 ---
 
 <div
-  class="grid grid-cols-1 items-center gap-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] md:gap-14"
+  class="grid grid-cols-1 items-start gap-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] md:gap-14"
 >
   <Image
     src={founder.photo}
     alt={founder.photoAlt}
     sizes="(min-width: 768px) 480px, 100vw"
-    class="h-auto w-full rounded-panel"
+    class="h-auto w-full rounded-panel md:sticky md:top-28"
   />
   <div>
     <Eyebrow>{founder.eyebrow}</Eyebrow>
-    <h2 class="mt-3 mb-5 text-[clamp(2.4rem,5.5vw,3.6rem)]">{founder.name}</h2>
-    {founder.bio.map((p) => <p class="mb-4 max-w-[52ch] text-[1.05rem]">{p}</p>)}
-    <ul class="mt-6 mb-4 flex flex-wrap gap-2">
+    <h2 class="mt-3 mb-6 text-[clamp(2.2rem,4.6vw,3.2rem)]">{founder.title}</h2>
+    <p class="mb-6 max-w-[34ch] font-display text-[clamp(1.45rem,2.6vw,1.75rem)] leading-[1.3] lining-nums">
+      {lead}
+    </p>
+    {
+      paragraphs.map((p) =>
+        typeof p === 'string' ? (
+          <p class="mb-4 max-w-[58ch] text-[1.02rem]">{p}</p>
+        ) : (
+          <blockquote class="my-7 max-w-[34ch] border-l-2 border-champagne pl-5 font-display text-[clamp(1.5rem,2.8vw,1.9rem)] leading-[1.25] text-accent italic">
+            {p.quote}
+          </blockquote>
+        ),
+      )
+    }
+    <ul class="mt-7 mb-4 flex flex-wrap gap-2">
       {
         founder.facts.map((fact) => (
           <li class="rounded-full border border-border bg-surface px-3 py-1.5 text-[.78rem] font-bold tracking-[.06em] uppercase">

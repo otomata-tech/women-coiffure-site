@@ -24,8 +24,12 @@ const settingsSchema = z.object({
   // Libellé du bouton d'appel de la barre fixe mobile.
   callLabel: z.string().min(1),
   organizationName: z.string().min(1),
-  // Fondateur (JSON-LD Organization.founder).
-  founder: z.object({ name: z.string().min(1), jobTitle: z.string().min(1) }),
+  // Fondateur (JSON-LD Organization.founder, nœud Person).
+  founder: z.object({
+    name: z.string().min(1),
+    jobTitle: z.string().min(1),
+    description: z.string().min(1),
+  }),
   // Coordonnées publiques, optionnelles : un site sans elles build toujours.
   // Rendues en JSON-LD Organization (contactPoint) et sur la page contact.
   contact: z

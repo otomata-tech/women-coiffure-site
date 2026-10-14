@@ -14,7 +14,11 @@
   "bookingCta": { "label": "Prendre RDV", "href": "/#salons" },
   "callLabel": "Appeler",
   "organizationName": "WOMEN Coiffure",
-  "founder": { "name": "Nathalie Laporte", "jobTitle": "Maître Artisan Coiffeur" },
+  "founder": {
+    "name": "Nathalie Laporte",
+    "jobTitle": "Maître Artisan Coiffeur",
+    "description": "Coiffeuse depuis 25 ans, Maître Artisan Coiffeur depuis 2005 et formatrice pour le groupe Artemoda ; spécialités : blondeur, coupes signature et bob cut."
+  },
   "contact": {
     "phone": "+33494912713",
     "phoneNote": "Un seul numéro pour les trois salons",

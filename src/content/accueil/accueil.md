@@ -34,19 +34,26 @@ salons:
   teamNote: Toute l'équipe est polyvalente, mais chaque salon a sa signature. C'est ce qui fait WOMEN.
 
 founder:
-  eyebrow: La fondatrice
-  name: Nathalie
+  eyebrow: Mon parcours
+  title: Nathalie Laporte, fondatrice de Women Coiffure
   photo: ./nathalie-bigoudis.webp
   photoAlt: Portrait de Nathalie en noir et blanc, bigoudis dans les cheveux
-  # Proposition de texte, à valider par Nathalie.
+  # Texte de Nathalie. Un tiret = un paragraphe ; le premier s'affiche en
+  # chapeau. « quote: » met une phrase en valeur, en citation.
   bio:
-    - Maître Artisan Coiffeur depuis 2005, Nathalie a fondé WOMEN et en a fait trois salons à son image, à Hyères, Carqueiranne et La Londe-les-Maures.
-    - Experte de la blondeur et spécialiste du bob cut, elle forme aussi ses équipes au sein de la WOMEN Academy et partage son savoir-faire sur scène, devant les professionnels.
+    - Depuis 25 ans, j’aide des milliers de femmes dans leur beauté au quotidien.
+    - Ma carrière a commencé par la technique. Elle m’a appris la rigueur, la minutie, le sur-mesure et l’adaptabilité. Puis la coupe est arrivée. Je me suis formée auprès des meilleurs, jusqu’à ce que le ciseau devienne le prolongement de ma main. Maître artisan depuis 2005, j’ai fait de l’excellence ma signature.
+    - "En 2013, j’ouvre mon premier salon à La Londe. Puis viennent Carqueiranne, et enfin Hyères en 2023, notre maison mère et son spa capillaire. C’est là que je vous accueille aujourd’hui, avec mes spécialités : la blondeur, les coupes signature et le bob cut."
+    - quote: "Ma devise : le savoir, le faire et le faire savoir."
+    - Formatrice pour le groupe Artemoda, je forme, je crée, je monte sur scène, et je ramène tout à mes équipes pour les faire briller.
+    - "Entrepreneure multipotentielle : coiffer, diriger, transmettre. Je ne choisis pas, c’est ensemble que tout prend sens."
+    - Après 25 ans de métier, la coiffure me surprend encore chaque jour. Je suis à mi-chemin de mon histoire, et j’ai hâte de découvrir ce que les 25 prochaines années nous réservent.
+    - Suivez-nous sur les réseaux et faites confiance à l’expertise WOMEN Coiffure.
   facts:
-    - Maître Artisan Coiffeur
-    - Experte blondeur
-    - Formatrice
-    - Label Artemoda
+    - 25 ans de métier
+    - Maître Artisan depuis 2005
+    - Formatrice Artemoda
+    - Blondeur · coupes signature · bob cut
 
 newClient:
   eyebrow: Nouvelle cliente

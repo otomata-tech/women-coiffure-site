@@ -181,10 +181,14 @@ const accueil = defineCollection({
       salons: z.object({ ...titreDeBloc, intro: z.string(), teamNote: z.string() }),
       founder: z.object({
         eyebrow: z.string(),
-        name: z.string(),
+        title: z.string(),
         photo: image(),
         photoAlt: z.string(),
-        bio: z.array(z.string()).min(1), // un élément = un paragraphe
+        // Un élément = un paragraphe ; le premier, en chapeau, est du texte
+        // simple. `{ quote }` = phrase mise en valeur en citation.
+        bio: z
+          .tuple([z.string()])
+          .rest(z.union([z.string(), z.object({ quote: z.string() })])),
         facts: z.array(z.string()),
       }),
       newClient: z.object({ ...titreDeBloc, text: z.string(), cta: lien }),

@@ -6,5 +6,5 @@ Prime sur SKILL.md § Traduire la demande : l'accueil n'a pas de texte en dur, i
   - Avis : `reviews.google` / `reviews.planity`, `rating` (note, ex. 4.9) et `count` (nombre d'avis). Les chiffres « près de 500 avis Google » du haut de page sont dans `accueil.md` (`stats`) : proposer de les mettre à jour aussi.
   - Une adresse change aussi le lien Maps (`mapsUrl`) : le signaler.
 - **Actu existante** → `src/content/actus/<slug>.md` : titre et `tag` dans l'en-tête, texte dans le corps.
-- **Autres textes de l'accueil** → `src/content/accueil/accueil.md`, puis bumper `updatedDate`. La bio de Nathalie (`founder.bio`) est une proposition à valider par elle : si elle la valide ou la réécrit, retirer le commentaire « Proposition de texte, à valider par Nathalie ».
+- **Autres textes de l'accueil** → `src/content/accueil/accueil.md`, puis bumper `updatedDate`. La bio de Nathalie (`founder.bio`) est son texte : un tiret = un paragraphe, le premier s'affiche en chapeau, `- quote: "…"` met une phrase en citation. Typographie française (apostrophe ’, espace insécable avant « : »), sans réécrire.
 - Téléphone, menu, Instagram → `editer-global`.
