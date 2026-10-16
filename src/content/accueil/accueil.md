@@ -23,8 +23,8 @@ stats:
     label: plus de 400 avis Planity
   - value: Maître Artisan
     label: depuis 2005
-  - value: Label
-    label: Salon Artemoda
+  - value: Artemoda
+    label: Label Salon · Formatrice Artemoda
 
 salons:
   eyebrow: Réservation 24h/24
@@ -80,8 +80,8 @@ realisations:
 # Section « Mariages & événements » (ancre #evenementiel), d'après l'affiche
 # et le flyer de Nathalie. Le téléphone vient de site.json.
 events:
-  eyebrow: Mariages & événements
-  title: Élégante. Pensée. Sur mesure.
+  eyebrow: Élégante. Pensée. Sur mesure.
+  title: Mariages & événements
   intro: L’art du chignon, par Nathalie & Davy, coiffeurs-maquilleurs de carrière. Ce savoir-faire, aujourd’hui de plus en plus rare.
   # Photo facultative (mariée, chignon…), posée au-dessus de « Une coiffure
   # pensée pour vous » : déposer le fichier à côté de ce fichier, puis
