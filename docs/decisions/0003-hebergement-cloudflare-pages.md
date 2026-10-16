@@ -9,7 +9,7 @@ Le site est servi depuis le 14/10/2026 par le projet Cloudflare Pages `women-coi
 ## Décision
 - Hébergement : Cloudflare Pages, projet `women-coiffure`. Domaines : `www.women-coiffure.fr` (principal), `women-coiffure.fr` (redirection 301 vers www, règle de redirection de la zone), `women-coiffure.oto.zone` (ancienne démo).
 - Mise en ligne : un push sur `main` déclenche `.github/workflows/ci.yml` — lint et build, puis job `deploy` (`wrangler pages deploy`). Secrets du dépôt : `CLOUDFLARE_API_TOKEN` (jeton limité à « Pages Write » sur le compte), `CLOUDFLARE_ACCOUNT_ID`.
-- En-têtes : `public/_headers` (cache long sur `/_astro/*` ; `noindex` tant que le site n'est pas ouvert au public).
+- En-têtes : `public/_headers` (cache long sur `/_astro/*`). Site ouvert à l’indexation le 16/10/2026.
 
 ## Conséquences
 + Publier = pousser sur `main` ; plus de script local ni de jeton manipulé à la main.
