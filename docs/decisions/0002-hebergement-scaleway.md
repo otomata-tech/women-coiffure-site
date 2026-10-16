@@ -1,7 +1,7 @@
 # ADR 0002 — Hébergement statique Scaleway, retrait de vercel.json
 
 ## Statut
-Accepté (2026-10-14).
+Remplacé par l'ADR 0003 (2026-10-16) : hébergement Cloudflare Pages.
 
 ## Contexte
 Le socle cible Vercel : `vercel.json` porte la négociation `Accept: text/markdown`, les alias 308 /about et /privacy et le `Vary: Accept`. WOMEN Coiffure sera servi en statique chez Scaleway ; les pages visées par les alias ont été retirées.
