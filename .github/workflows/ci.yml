@@ -22,3 +22,29 @@ jobs:
       # astro check (types + frontmatter Zod) puis build statique : attrape
       # frontmatter invalide, lien de collection cassé, erreur de génération.
       - run: pnpm build
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'push'
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  # Un push sur main = mise en ligne (ADR 0003) : le dist validé par le job
+  # build est publié sur le projet Cloudflare Pages « women-coiffure ».
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=women-coiffure --branch=main --commit-hash=${{ github.sha }}
