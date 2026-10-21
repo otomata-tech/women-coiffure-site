@@ -8,6 +8,8 @@ team:
     specialty: Experte blondeur, coupes signature, spécialiste du bob cut.
   - name: Marie
     specialty: Esthéticienne, spécialiste des soins et du spa capillaire.
+  - name: Jade
+    specialty: Coiffeuse, couleurs et cheveux XXL.
 address:
   streetAddress: 4 rue du Soldat Bellon Antoine
   postalCode: "83400"
