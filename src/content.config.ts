@@ -195,6 +195,23 @@ const accueil = defineCollection({
         caption: z.string(), // étiquette posée sur la photo
       }),
       stats: z.array(z.object({ value: z.string(), label: z.string() })).length(4),
+      // Carrousel des coffrets, juste sous le haut de page : une slide par box.
+      boxes: z.object({
+        ...titreDeBloc,
+        intro: z.string(),
+        items: z
+          .array(
+            z.object({
+              name: z.string(),
+              contents: z.string(), // une ligne : ce que contient la box
+              price: z.number().positive(), // en euros, affiché « 50 € »
+              photo: image(),
+            }),
+          )
+          .min(1),
+        cta: lien,
+        note: z.string(), // mention sous le bouton
+      }),
       salons: z.object({ ...titreDeBloc, intro: z.string(), teamNote: z.string() }),
       founder: z.object({
         eyebrow: z.string(),

@@ -3,7 +3,7 @@
 # réglages communs (téléphone, Instagram, menu) vivent dans leurs propres fichiers :
 # src/content/salons/, src/content/actus/, src/content/settings/site.json.
 title: Salons de coiffure à Hyères, Carqueiranne et La Londe-les-Maures
-updatedDate: 2026-10-14
+updatedDate: 2026-10-21
 
 hero:
   eyebrow: Hyères · Carqueiranne · La Londe
@@ -25,6 +25,72 @@ stats:
     label: depuis 2005
   - value: Artemoda
     label: Label Salon · Formatrice Artemoda
+
+# Carrousel « Les Boxes des Fêtes Davines », juste sous le haut de page.
+# Une box = un tiret : nom, contenu en une ligne, prix en euros (chiffre seul),
+# photo dans le dossier boxes/ à côté de ce fichier. L'ordre de la liste est
+# l'ordre des slides.
+boxes:
+  eyebrow: Noël 2026 · Coffrets Davines
+  title: Les Boxes des Fêtes Davines
+  intro: Treize coffrets prêts à offrir, un pour chaque type de cheveux. Disponibles jusqu’à fin décembre, dans la limite des stocks.
+  items:
+    - name: Six petits frères
+      contents: "Tous types de cheveux : shampoing, après-shampoing, All in One Milk et Soufflé OI en format voyage"
+      price: 50
+      photo: ./boxes/six-petits-freres.webp
+    - name: Dispersion rythmique
+      contents: "Tous types de cheveux : shampoing et après-shampoing LOVE lissants, All in One Milk OI et masque Beautiful Things"
+      price: 50
+      photo: ./boxes/dispersion-rythmique.webp
+    - name: Bruissement tropical
+      contents: "Cheveux bouclés : shampoing et après-shampoing LOVE Curl, sérum Curl Building"
+      price: 54
+      photo: ./boxes/bruissement-tropical.webp
+    - name: Berceuse douce et paresseuse
+      contents: "Cheveux indisciplinés : shampoing et après-shampoing LOVE lissants, All in One Milk OI"
+      price: 66
+      photo: ./boxes/berceuse-douce-et-paresseuse.webp
+    - name: Mélodies au-dessus du ciel
+      contents: "Cheveux colorés : shampoing et après-shampoing MINU, All in One Milk OI"
+      price: 66
+      photo: ./boxes/melodies-au-dessus-du-ciel.webp
+    - name: La danse sociale
+      contents: "Cheveux cassants : shampoing et après-shampoing NOUNOU, huile OI"
+      price: 66
+      photo: ./boxes/la-danse-sociale.webp
+    - name: Chercheur de sons sous la mer
+      contents: "Cheveux longs : shampoing, après-shampoing et spray anti-casse MELU"
+      price: 66
+      photo: ./boxes/chercheur-de-sons-sous-la-mer.webp
+    - name: Concert en plein air
+      contents: "Cheveux secs : shampoing, après-shampoing et sérum hydratant MOMO"
+      price: 66
+      photo: ./boxes/concert-en-plein-air.webp
+    - name: La parade des saltimbanques
+      contents: "Tous types de cheveux : shampoing, après-shampoing et All in One Milk OI"
+      price: 68
+      photo: ./boxes/la-parade-des-saltimbanques.webp
+    - name: Jam session à l’heure du thé
+      contents: "Cheveux secs et abîmés : shampoing et après-shampoing Nourishing Naturaltech, fluide Liquid Spell"
+      price: 70
+      photo: ./boxes/jam-session-a-l-heure-du-the.webp
+    - name: Rouge à lèvres & haut-parleur
+      contents: "Cheveux blonds : shampoing et après-shampoing Heart of Glass, masque Beautiful Things"
+      price: 80
+      photo: ./boxes/rouge-a-levres-et-haut-parleur.webp
+    - name: L’ensemble contemporain
+      contents: "Tous types de cheveux : shampoing, après-shampoing et huile OI"
+      price: 80
+      photo: ./boxes/l-ensemble-contemporain.webp
+    - name: Nocturnes en rêve
+      contents: "Tous types de cheveux : shampoing, après-shampoing, All in One Milk, Soufflé et huile OI"
+      price: 96
+      photo: ./boxes/nocturnes-en-reve.webp
+  cta:
+    label: Je réserve ma box
+    href: https://www.planity.com/women-coiffure-hyeres-83400
+  note: Click & collect au salon de Hyères, aussi disponibles dans nos 3 salons
 
 salons:
   eyebrow: Réservation 24h/24

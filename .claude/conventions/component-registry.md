@@ -84,10 +84,11 @@ Un bloc inline non listé est réputé duplication à corriger.
 | index.astro | assemblage des blocs home/ + en-tête de la section salons (lien téléphone) | design unique de la home ; aucun texte propre, tout vient de accueil.md, salons, actus, site.json |
 
 ## Home (src/components/home/)
-Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-même (pas d'exemple en /styleguide : ils exigent les données des collections). Libellés fixes tolérés dans ces blocs : « Adresse », « Horaires », « Avis », « Réserver à … » (SalonCard), « Téléphone », « Réserver », « Instagram » (FooterSalons), « Avant », « Après » (RealisationsList).
+Blocs de l'accueil, rendus sur / seulement ; prévisualisés par l'accueil lui-même (pas d'exemple en /styleguide : ils exigent les données des collections). Libellés fixes tolérés dans ces blocs : « Adresse », « Horaires », « Avis », « Réserver à … » (SalonCard), « Téléphone », « Réserver », « Instagram » (FooterSalons), « Avant », « Après » (RealisationsList), « Box précédente », « Box suivante » (BoxesCarousel).
 | Composant | Props | Rôle |
 | --- | --- | --- |
 | Hero.astro | hero, stats, bookingHref, phone | Titre (fin en italique or), boutons RDV/appel, portrait en arche avec étiquette, bandeau de 4 chiffres. Isolé : seul bloc à toucher pour changer le haut de page |
+| BoxesCarousel.astro | block | Carrousel « Boxes des Fêtes » (#boxes, sous le héros) : slides en carte (photo, nom, contenu, prix), défilement aimanté natif (glisser au doigt), `<script>` vanilla pour la lecture auto 4 s (pause survol/toucher/focus/hors écran, coupée en reduced-motion), flèches, points ; bouton boutique + mention. Seul composant à lecture automatique du site |
 | SalonCard.astro | salon | Carte d'un salon (photo, équipe, adresse, horaires dérivés, avis, bouton Planity) |
 | FounderBio.astro | founder | Portrait + bio de la fondatrice, puces |
 | NewClient.astro | block, phone | Encart « Nouvelle cliente » sur fond doux : texte, phrase de réservation suivie du numéro du standard (lien d'appel), bouton Planity Hyères |

@@ -14,6 +14,7 @@ import RealisationsList from '@/components/home/RealisationsList.astro';
 import InstagramBand from '@/components/home/InstagramBand.astro';
 import NewsList from '@/components/home/NewsList.astro';
 import ShopBlock from '@/components/home/ShopBlock.astro';
+import BoxesCarousel from '@/components/home/BoxesCarousel.astro';
 import { SITE } from '@/lib/site';
 import { getSalons, salonJsonLd } from '@/lib/salons';
 import { getActus } from '@/lib/actus';
@@ -37,6 +38,15 @@ const meta = { title: page.title, description: SITE.description };
 
 <BaseLayout meta={meta} type="website" updatedDate={page.updatedDate} graph={salonNodes}>
   <Hero hero={page.hero} stats={page.stats} bookingHref="#salons" phone={phone} />
+
+  <Section id="boxes">
+    <Container>
+      <SectionHead eyebrow={page.boxes.eyebrow} title={page.boxes.title}>
+        {page.boxes.intro}
+      </SectionHead>
+      <BoxesCarousel block={page.boxes} />
+    </Container>
+  </Section>
 
   <Section id="salons">
     <Container>

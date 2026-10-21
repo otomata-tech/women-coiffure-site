@@ -147,3 +147,7 @@ Format d'une entrée :
 - **Erreur** : la convention imposait la forme arbitraire `bg-[var(--color-accent)]` alors que Tailwind 4 génère les utilitaires sémantiques depuis @theme ; le site enfant (merciyanis) a dû inverser la règle après usage (son ADR 0008), et le socle entier suivait la mauvaise forme.
 - **Règle écrite** : classes générées par @theme en markup, `var(--color-*)` réservé aux blocs `<style>` scoped ; arbitraire seulement si aucun utilitaire n'est généré. Code du socle migré dans le même commit (une règle contredite par le code du socle est morte à la naissance).
 - **Emplacement** : `.claude/conventions/styling-tailwind.md` ; reprise dans CLAUDE.md § Règles Astro 4 et coding-standards.md.
+
+## 2026-10-21 — Rail défilant dans un parent `grid` : la page entière débordait
+- **Erreur** : le rail `overflow-x-auto` du carrousel des boxes, posé dans un `grid` sans colonne explicite, élargissait la colonne à la somme des slides (piste de 2041px pour un écran de 1366px). Build vert ; repéré seulement en mesurant `clientWidth` dans le navigateur.
+- **Observation** (1re occurrence, pas encore de règle) : un rail défilant enfant d'un `grid` exige `grid-cols-1` (minmax(0,1fr)) ou `min-w-0` sur l'enfant. À promouvoir dans styling-tailwind.md à la 2e occurrence.
