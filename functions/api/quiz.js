@@ -12,6 +12,7 @@
 
 // Tableau oto `qualiopi-trichologie` (org 307 « women.distrib »).
 const OTO_NS_ID = 948;
+const OTO_ORG_ID = "307"; // org oto « women.distrib », propriétaire de la table
 const OTO_KEY = "id_stagiaire";
 const OTO_API_BASE = "https://mcp.oto.cx";
 // Doit rester identique à la constante SESSION de public/quiz/index.html.
@@ -181,6 +182,8 @@ export async function onRequest({ request, env }) {
       method: "POST",
       headers: {
         Authorization: `Bearer ${env.OTO_QUIZ_TOKEN}`,
+        // La table appartient à l'org women.distrib : sans l'org active, oto répond 404.
+        "X-Oto-Org": OTO_ORG_ID,
         "Content-Type": "application/json",
         Accept: "application/json",
       },
