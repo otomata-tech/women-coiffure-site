@@ -146,7 +146,8 @@ const LEVELS=[[0,"Découverte","Les bases sont à construire : ces deux jours so
 const $=s=>document.querySelector(s), app=$("#app"), act=$("#act");
 const SESSION="Trichologie Artemoda · DAVINES Paris · 9-10/11/2026";
 const ENDPOINT=""; // adresse du relais oto, renseignée par Alexis lors de la mise en ligne
-const MAILTO="women.distrib@gmail.com"; // repli : envoi par e-mail tant que le relais n’est pas branché
+const MAILTO="artemodagroup@gmail.com"; // Team Artemoda, qui archive les preuves Qualiopi
+const MAILCC="women.distrib@gmail.com"; // copie à la formatrice
 const LABELS={id_stagiaire:"Identifiant",session:"Session",nom:"Nom",prenom:"Prénom",salon:"Salon",fonction:"Fonction",attentes:"Attentes",date_entree:"Date positionnement",niveau_ressenti:"Niveau ressenti",score_entree:"Score entrée (%)",niveau_entree:"Niveau entrée",objectifs_entree:"Objectifs (entrée)",date_sortie:"Date évaluation sortie",score_sortie:"Score sortie (%)",niveau_sortie:"Niveau sortie",progression:"Progression (points)",objectifs_sortie:"Objectifs (sortie)",date_satisfaction:"Date satisfaction",notes_satisfaction:"Notes satisfaction",satisfaction_moyenne:"Satisfaction moyenne (/4)",recommande:"Recommande",retient:"Retient",ameliorer:"Améliorerait",premier_geste:"Premier geste",recontact_suivi:"Recontact suivi"};
 const OBJ=["Comprendre l’anatomie de la peau, du follicule et du cheveu, et le cycle pilaire","Repérer les anomalies du cuir chevelu et de la tige (questionnaire, pull test, micro-caméra)","Expliquer un diagnostic en mots simples et proposer une prescription salon + maison","Réaliser un modelage trichologique adapté à l’anomalie"];
 const OBJV=["Non acquis","En cours","Acquis"];
@@ -274,13 +275,13 @@ function satisfaction(){
 function mailHref(){const r=S.lastRow||{};const etape=isExit()?"Fin de formation":"Début de formation";
   const subj=`Évaluation Qualiopi Trichologie · ${r.nom||""} ${r.prenom||""} · ${etape}`;
   const body=Object.keys(r).filter(k=>r[k]!==null&&r[k]!==undefined&&r[k]!=="").map(k=>`${LABELS[k]||k} : ${r[k]}`).join("\n");
-  return `mailto:${MAILTO}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`}
+  return `mailto:${MAILTO}?cc=${MAILCC}&subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`}
 function done(){
   const exit=isExit(),{p}=score();
   app.innerHTML=`<div class="card"><span class="tag">${esc(S.moment)}</span>
     <h2>${exit?"Merci, votre évaluation est terminée":"Merci, votre positionnement est enregistré"}</h2>
     ${S.sent?`<div class="saved"><strong>Enregistré</strong>Vos réponses sont transmises à l’organisme de formation. Rien à imprimer, rien à signer.</div>`
-      :`<div class="saved warn"><strong>Dernière étape : envoyez votre évaluation</strong>Touchez le bouton ci-dessous : votre messagerie s’ouvre avec l’évaluation déjà rédigée, il ne reste qu’à appuyer sur « Envoyer ». Adresse : <span class="mail">${MAILTO}</span></div>
+      :`<div class="saved warn"><strong>Dernière étape : envoyez votre évaluation</strong>Touchez le bouton ci-dessous : votre messagerie s’ouvre avec l’évaluation déjà rédigée, il ne reste qu’à appuyer sur « Envoyer ». Destinataire : Team Artemoda, <span class="mail">${MAILTO}</span></div>
       <a class="btn" style="text-align:center;text-decoration:none" href="${mailHref()}">Envoyer mon évaluation par e-mail</a>
       <p class="lead" style="margin:0;font-size:.85rem">Le bouton ne s’ouvre pas ? Montrez cet écran à votre formatrice : ${esc(S.prenom)} ${esc(S.nom.toUpperCase())} · ${esc(S.moment)} · score ${p} %.</p>`}
     ${exit?"":`<p style="margin:0">En fin de formation, rouvrez ce quiz sur ce même téléphone et choisissez « Fin de formation » pour mesurer votre progression.</p>`}
