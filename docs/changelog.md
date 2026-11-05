@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-05 — Quiz /quiz/ : enregistrement dans oto (ADR 0004)
+- Pages Function `functions/api/quiz.js` : relais vers le tableau oto `qualiopi-trichologie` (ns 948, org 307), upsert par `id_stagiaire`, secret Pages `OTO_QUIZ_TOKEN`. La CI publie `functions/` avec `dist/`.
+- Page de Nathalie retouchée au minimum : `ENDPOINT="/api/quiz"`, `id_stagiaire` aléatoire (UUID v4 gardé sur le téléphone), phrase « Vos données ». Le repli e-mail reste et s'affiche si l'enregistrement échoue (sans secret : 503).
+- Mentions légales : § Quiz de trichologie.
+
 ## 2026-11-05 — Quiz Trichologie Artemoda sur /quiz/
 - Page autonome `public/quiz/index.html` (copiée telle quelle au build, hors Astro, `noindex`, absente du sitemap et du menu) : quiz d'autoévaluation + positionnement, acquis et satisfaction Qualiopi pour la formation de Nathalie chez DAVINES Paris (9-10 novembre 2026). QR code dans son support de formation.
 - Aucun envoi serveur tant que la constante `ENDPOINT` est vide : la stagiaire envoie son évaluation par e-mail (`mailto:` pré-rempli vers Team Artemoda artemodagroup@gmail.com, copie women.distrib@gmail.com). Source et table de réception : projet oto 783, table `qualiopi-trichologie`.

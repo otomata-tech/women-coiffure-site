@@ -107,6 +107,8 @@ textarea{font:inherit;padding:12px;border-radius:12px;border:1.5px solid var(--l
 .saved.warn{background:var(--copper-soft)}
 .saved strong{display:block;font-family:var(--display)}
 .mail{font-weight:700;user-select:all}
+.foot.data{font-size:.75rem;line-height:1.45}
+.foot.data a{color:inherit}
 .foot{font-size:.78rem;color:var(--muted);text-align:center}
 @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
@@ -121,6 +123,7 @@ textarea{font:inherit;padding:12px;border-radius:12px;border:1.5px solid var(--l
   <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
   <main id="app"></main>
   <p class="foot">Autoévaluation · session DAVINES Paris · 9 &amp; 10 novembre 2026</p>
+  <p class="foot data">Vos données : vos réponses servent au suivi de la formation et de preuves d’évaluation pour la certification Qualiopi ; elles sont transmises à l’organisme de formation Artemoda et conservées 3 ans après la formation. Vous pouvez y accéder, les faire rectifier ou effacer en écrivant à <a href="mailto:women.distrib@gmail.com">women.distrib@gmail.com</a>. Détails : <a href="/mentions-legales/#quiz-de-trichologie">mentions légales</a>.</p>
 </div>
 <div class="action"><div class="in" id="act"></div></div>
 
@@ -145,7 +148,7 @@ const Q=[
 const LEVELS=[[0,"Découverte","Les bases sont à construire : ces deux jours sont faits pour vous."],[40,"Initié·e","Vous avez des repères. On va les structurer et les rendre utiles en cabine."],[65,"Confirmé·e","Solide ! Il reste quelques notions à affiner."],[85,"Expert·e","Excellent niveau. Vous pourrez épauler le groupe."]];
 const $=s=>document.querySelector(s), app=$("#app"), act=$("#act");
 const SESSION="Trichologie Artemoda · DAVINES Paris · 9-10/11/2026";
-const ENDPOINT=""; // adresse du relais oto, renseignée par Alexis lors de la mise en ligne
+const ENDPOINT="/api/quiz"; // relais (functions/api/quiz.js) vers la table oto qualiopi-trichologie ; en échec, l’e-mail ci-dessous prend le relais
 const MAILTO="artemodagroup@gmail.com"; // Team Artemoda, qui archive les preuves Qualiopi
 const MAILCC="women.distrib@gmail.com"; // copie à la formatrice
 const LABELS={id_stagiaire:"Identifiant",session:"Session",nom:"Nom",prenom:"Prénom",salon:"Salon",fonction:"Fonction",attentes:"Attentes",date_entree:"Date positionnement",niveau_ressenti:"Niveau ressenti",score_entree:"Score entrée (%)",niveau_entree:"Niveau entrée",objectifs_entree:"Objectifs (entrée)",date_sortie:"Date évaluation sortie",score_sortie:"Score sortie (%)",niveau_sortie:"Niveau sortie",progression:"Progression (points)",objectifs_sortie:"Objectifs (sortie)",date_satisfaction:"Date satisfaction",notes_satisfaction:"Notes satisfaction",satisfaction_moyenne:"Satisfaction moyenne (/4)",recommande:"Recommande",retient:"Retient",ameliorer:"Améliorerait",premier_geste:"Premier geste",recontact_suivi:"Recontact suivi"};
@@ -167,7 +170,9 @@ function setProg(){const n=S.step==="q"?S.i:S.step==="intro"?0:Q.length;$("#barf
 function render(){setProg();({intro,q:question,end,sat:satisfaction,done})[S.step]();window.scrollTo(0,0)}
 function seg(cls,vals,cur,attr){return `<div class="${cls}" role="group">${vals.map(m=>`<button type="button" data-${attr}="${esc(m)}" aria-pressed="${cur===m}">${esc(m)}</button>`).join("")}</div>`}
 function field(id,label,val,ph,area){return `<label class="f" for="${id}">${label}${area?`<textarea id="${id}" placeholder="${ph}">${esc(val)}</textarea>`:`<input id="${id}" type="text" value="${esc(val)}" placeholder="${ph}">`}</label>`}
-const idStag=()=>(SESSION+"|"+S.nom.trim().toUpperCase()+"|"+S.prenom.trim().toLowerCase());
+// Identifiant aléatoire (UUID v4), tiré une fois par stagiaire et gardé sur le téléphone : il relie
+// le début et la fin sans être devinable. Un autre nom sur le même téléphone en tire un nouveau.
+const idStag=()=>{const who=S.nom.trim().toUpperCase()+"|"+S.prenom.trim().toLowerCase();if(!S.id||S.idWho!==who){S.id=crypto.randomUUID();S.idWho=who;save()}return S.id};
 async function send(data){
   const row=Object.assign({id_stagiaire:idStag(),session:SESSION,nom:S.nom.trim().toUpperCase(),prenom:S.prenom.trim(),salon:S.salon.trim()},data);
   S.lastRow=row;save();

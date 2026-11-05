@@ -28,7 +28,11 @@ jobs:
         if: github.event_name != 'pull_request'
         with:
           name: dist
-          path: dist
+          # functions/ voyage avec dist/ : `wrangler pages deploy` compile les
+          # Pages Functions du dossier `functions/` du répertoire courant (ADR 0004).
+          path: |
+            dist
+            functions
           retention-days: 7
 
   # Un push sur main = mise en ligne (ADR 0003) : le dist validé par le job
@@ -41,10 +45,11 @@ jobs:
       group: deploy-production
       cancel-in-progress: false
     steps:
+      # L'artefact contient dist/ et functions/ : restitués à la racine.
       - uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist
+          path: .
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

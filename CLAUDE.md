@@ -50,7 +50,7 @@ La session écrit elle-même, quel que soit son modèle ; elle délègue quand u
 - **Un sous-agent reçoit la méthode, pas seulement la tâche** : mode/échelle annoncés, conventions .claude/conventions/ routées à charger, critères de succès, interdiction de commiter, **interdiction de trancher un arbitrage** (il s'arrête et remonte les options à la session principale, qui pose la question via `AskUserQuestion`), **interdiction de tuer ou de modifier un processus, un fichier ou un dépôt qu'il n'a pas lancé ou qui est hors de son périmètre** (un `Stop-Process chrome.exe` global ferme le navigateur de l'utilisateur ; on filtre sur le processus qu'on a soi-même créé, ou on s'arrête et on remonte). Ces trois interdictions figurent dans le prompt de chaque sous-agent. Le commit reste à la session principale, via `/commit-push`.
 
 ## Projet
-**WOMEN Coiffure** : site vitrine d'une page des trois salons de coiffure mixte de Nathalie Laporte dans le Var (Hyères, Carqueiranne, La Londe-les-Maures). Éditrice : Nathalie, via Claude Code en mots courants. Réservation : Planity (liens sortants, aucun formulaire sur le site).
+**WOMEN Coiffure** : site vitrine d'une page des trois salons de coiffure mixte de Nathalie Laporte dans le Var (Hyères, Carqueiranne, La Londe-les-Maures). Éditrice : Nathalie, via Claude Code en mots courants. Réservation : Planity (liens sortants, aucun formulaire de réservation). Seule collecte : le quiz Qualiopi de trichologie `/quiz/` (`public/quiz/index.html`, page autonome de Nathalie), qui poste à la Pages Function `functions/api/quiz.js`, relais vers le tableau oto 948 (ADR 0004) ; repli e-mail si l'envoi échoue.
 - **Où vit chaque contenu** (un fichier de contenu à toucher, jamais un composant) :
   - réglages communs (nom, téléphone `contact.phone` en +33…, phrase « Un seul numéro… », menu, bouton « Prendre RDV », Instagram, phrase du pied de page, fondatrice du JSON-LD) → `src/content/settings/site.json` ;
   - un salon (nom, équipe et spécialités, adresse, lien Maps, horaires, notes et nombres d'avis, lien Planity, photo de carte, galerie) → `src/content/salons/<salon>.md`, photos dans `src/content/salons/<salon>/` ;
@@ -79,7 +79,7 @@ Migration d'un site Webflow existant : dérouler .claude/playbooks/migration-web
 Site complet depuis un brief client : dérouler .claude/playbooks/website-builder.md (P0 intake → P8 apprentissage, gates par phase) avec le kit C:\apps\web-kit (skills section-catalog, copywriting, design-craft). Plan et décisions : docs/website-builder.md.
 
 ## Règles absolues
-1. output: static. Ne JAMAIS introduire d adapter, de SSR, d API route dynamique, de Server Action ou de dépendance serveur. Tout doit être généré au build.
+1. output: static. Ne JAMAIS introduire d adapter, de SSR, d API route dynamique, de Server Action ou de dépendance serveur. Tout doit être généré au build. Seule exception : la Pages Function `functions/api/quiz.js` du quiz (ADR 0004), hors Astro.
 2. Zéro JS par défaut. Pas d îlot Solid sauf besoin réel d interactivité (state, events). Pousser client:* le plus bas possible et préférer client:visible / client:idle à client:load.
 3. Le contenu éditorial vit en Markdown/MDX dans src/content/, JAMAIS en dur dans des composants. Présentation (composants/tokens) et contenu (.md) restent séparés.
 4. Tout nouveau champ de contenu passe par un schéma Zod dans src/content.config.ts. Le typage du contenu EST le filet de sécurité (pas de tests).
